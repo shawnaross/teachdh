@@ -1,32 +1,19 @@
-$(function () {
-  // Utility functions:
-  function pluck(key, list) {
-    return list.map(function (item) {return item[key];});
-  }
+var ACTIVE_CLASS = 'active';
 
-  function uniq(list) {
-    return list.filter(function (item, index) {return list.indexOf(item) === index});
-  }
+function search(fuse, target) {
+  return pluck('item', fuse.search(target));
+}
 
-  function flatten(list, d) {
-    var d = d || Infinity;
-    return d > 0 ? list.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val, d - 1) : val), []) : list.slice();
-  }
-
-  function search(fuse, target) {
-    return pluck('item', fuse.search(target));
-  }
-
+document.addEventListener('DOMContentLoaded', function () {
   // Data structures:
-  var fuseData = $('article').map(function (_i, article) {
-    var $article = $(article);
+  var fuseData = nl2array(document.querySelectorAll('article')).map(function (article) {
     return {
-      id: $article.attr('id'),
-      title: $article.find('h1').text(),
-      content: $article.find('main').text(),
-      categories: $article.find('header li').map(function (_i, li) {return $(li).text();}).get(),
+      id: article.getAttribute('id'),
+      title: article.querySelector('h1').innerText,
+      content: article.querySelector('main').innerText,
+      categories: nl2array(article.querySelectorAll('header li')).map(function (li) {return li.innerText;}),
     };
-  }).get();
+  });
   // Extract categories from the above data:
   var categories = uniq(flatten(pluck('categories', fuseData)));
   // Generate fuse search objects:
@@ -44,67 +31,84 @@ $(function () {
     })
   };
   // Title List event handler:
-  $('#titleList').on('results', function (_ev, extra) {
-    var input = extra.input;
-    var results = extra.results;
+  document.querySelector('#titleList').addEventListener('results', function (ev) {
+    var input = ev.detail.input;
+    var results = ev.detail.results;
     if (results.length === 0 && input.length === 0) {
-      $('#titleList').html('');
+      document.querySelector('#titleList').innerHTML = '';
     } else {
-      $('#titleList').html('<ul></ul>');
+      document.querySelector('#titleList').innerHTML = '<ul></ul>';
       results.map(function (result) {
-        var link = $('<a href="#"></a>');
-        link.html(result.title);
-        link.on('click', function (ev) {
+        var link = document.createElement('A');
+        link.href = '#';
+        link.innerHTML = result.title;
+        link.addEventListener('click', function (ev) {
           ev.preventDefault();
-          $.scrollTo('#' + result.id);
+          document.querySelector('#' + result.id).scrollIntoView({behavior: 'smooth'});
         });
-        $('#titleList ul').append($('<li></li>').append(link));
+        var item = document.createElement('LI');
+        item.insertAdjacentElement('beforeend', link);
+        document.querySelector('#titleList ul').insertAdjacentElement('beforeend', item);
       });
     }
   })
   // Filter event handler:
-  $('#questions').on('filter', function (_ev, extra) {
-    var input = extra.input;
-    var results = extra.results;
+  document.querySelector('#questions').addEventListener('filter', function (ev) {
+    var input = ev.detail.input;
+    var results = ev.detail.results;
     if (results.length === 0 && input.length === 0) {
-      $('article').show();
+      nl2array(document.querySelectorAll('article')).forEach(function (article) {
+        show(article)
+      });
     } else {
       var ids = pluck('id', results);
-      $('article').each(function (_i, article) {
-        ids.indexOf($(article).attr('id')) >= 0 ? $(article).show() : $(article).hide()
+      nl2array(document.querySelectorAll('article')).forEach(function (article) {
+        ids.indexOf(article.getAttribute('id')) >= 0 ? show(article) : hide(article)
       });
     }
   });
   // Filters as the user types in the search bar:
-  $('#searchBar').on('input', function (ev) {
+  document.querySelector('#searchBar').addEventListener('input', function (ev) {
     ev.preventDefault();
     var value = ev.target.value;
     var results = search(fuse.questions, value);
-    $('#questions').trigger('filter', {
-      results: results,
-      input: value,
-    });
-    $('#titleList').trigger('results', {
-      results: results,
-      input: value,
-    });
+    document.querySelector('#questions').dispatchEvent(new CustomEvent('filter', {
+      detail: {
+        results: results,
+        input: value,
+      }
+    }));
+    document.querySelector('#titleList').dispatchEvent(new CustomEvent('results', {
+      detail: {
+        results: results,
+        input: value,
+      }
+    }));
   });
   // Filters as the user clicks category buttons:
   categories.map(function (category) {
-    var button = $('<button></button>');
-    button.html(category);
-    button.data('target', category);
-    button.on('click', function (ev) {
+    var button = document.createElement('BUTTON');
+    button.innerHTML = category;
+    button.setAttribute('data-target', category);
+    button.addEventListener('click', function (ev) {
       ev.preventDefault();
-      var value = $(ev.target).data('target');
-      var isActive = $(ev.target).hasClass('active');
-      $(ev.target).toggleClass('active');
-      $('.active').not(ev.target).removeClass('active');
-      $('#questions').trigger('filter', {
-        results: isActive ? [] : search(fuse.categories, value),
-        input: isActive ? '' : value,
-      });
+      var value = ev.target.getAttribute('data-target');
+      var isActive = hasClass(ev.target, ACTIVE_CLASS);
+      toggleClass(ev.target, ACTIVE_CLASS);
+      nl2array(document.querySelector('.active'))
+        .filter(function (element) {return element !== ev.target})
+        .forEach(function (element) {
+          toggleClass(element, ACTIVE_CLASS);
+        });
+      document.querySelector('#questions').dispatchEvent(new CustomEvent('filter', {
+        detail: {
+          results: isActive ? [] : search(fuse.categories, value),
+          input: isActive ? '' : value,
+        }
+      }));
     });
-    $('#categories ul').append($('<li></li>').append(button));
+    var item = document.createElement('LI');
+    item.insertAdjacentElement('beforeend', button);
+    document.querySelector('#categories ul').insertAdjacentElement('beforeend', item);
   });
 });

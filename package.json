@@ -1,0 +1,22 @@
+{
+  "name": "@oncomouse/teachdh-test",
+  "version": "1.0.0",
+  "description": "To build a live searchable FAQ as a companion to the second edition of [*Using Digital Humanities in the Classroom*](https://www.bloomsbury.com/uk/using-digital-humanities-in-the-classroom-9781350029750/), a combination of [Jekyll](https://github.com/jekyll/jekyll) and [Create React App](https://github.com/facebook/create-react-app) was used. The React App, located in `teachdh-app-dev/` folder, renders the content and coordinates the fuzzy search and filtering of questions. Jekyll, which is the main app, handles post creation and site building.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oncomouse/teachdh-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oncomouse/teachdh-test/issues"
+  },
+  "homepage": "https://github.com/oncomouse/teachdh-test#readme",
+  "devDependencies": {
+    "lorem-ipsum": "^2.0.3"
+  }
+}
