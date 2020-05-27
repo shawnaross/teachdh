@@ -1,0 +1,19 @@
+---
+layout: teachdh
+---
+
+{% for post in site.posts %}
+<article>
+  <header>
+    <h1>{{ post.title | escape }}</h1>
+    <ul>
+      {% for category in post.categories %}
+      <li>{{ category |escape }}</li>
+      {% endfor %}
+    </ul>
+  </header>
+  <main>
+    {{ post.content }}
+  </main>
+</article>
+{% endfor %}
