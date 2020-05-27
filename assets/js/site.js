@@ -1,7 +1,16 @@
 $(function () {
   // Utility functions:
   function pluck(key, list) {
-    return $.map(list, function (item) {return item[key];});
+    return list.map(function (item) {return item[key];});
+  }
+
+  function uniq(list) {
+    return list.filter(function (item, index) {return list.indexOf(item) === index});
+  }
+
+  function flatten(list, d) {
+    var d = d || Infinity;
+    return d > 0 ? list.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val, d - 1) : val), []) : list.slice();
   }
 
   function search(fuse, target) {
@@ -18,6 +27,9 @@ $(function () {
       categories: $article.find('header li').map(function (_i, li) {return $(li).text();}).get(),
     };
   }).get();
+  // Extract categories from the above data:
+  var categories = uniq(flatten(pluck('categories', fuseData)));
+  // Generate fuse search objects:
   var fuse = {
     questions: new Fuse(fuseData, {
       keys: [
@@ -31,6 +43,25 @@ $(function () {
       ],
     })
   };
+  // Title List event handler:
+  $('#titleList').on('results', function (_ev, extra) {
+    var input = extra.input;
+    var results = extra.results;
+    if (results.length === 0 && input.length === 0) {
+      $('#titleList').html('');
+    } else {
+      $('#titleList').html('<ul></ul>');
+      results.map(function (result) {
+        var link = $('<a href="#"></a>');
+        link.html(result.title);
+        link.on('click', function (ev) {
+          ev.preventDefault();
+          $.scrollTo('#' + result.id);
+        });
+        $('#titleList ul').append($('<li></li>').append(link));
+      });
+    }
+  })
   // Filter event handler:
   $('#questions').on('filter', function (_ev, extra) {
     var input = extra.input;
@@ -48,18 +79,32 @@ $(function () {
   $('#searchBar').on('input', function (ev) {
     ev.preventDefault();
     var value = ev.target.value;
+    var results = search(fuse.questions, value);
     $('#questions').trigger('filter', {
-      results: search(fuse.questions, value),
+      results: results,
+      input: value,
+    });
+    $('#titleList').trigger('results', {
+      results: results,
       input: value,
     });
   });
   // Filters as the user clicks category buttons:
-  $('#categories button').on('click', function (ev) {
-    ev.preventDefault();
-    var value = $(ev.target).attr('data-target');
-    $('#questions').trigger('filter', {
-      results: search(fuse.categories, value),
-      input: value,
+  categories.map(function (category) {
+    var button = $('<button></button>');
+    button.html(category);
+    button.data('target', category);
+    button.on('click', function (ev) {
+      ev.preventDefault();
+      var value = $(ev.target).data('target');
+      var isActive = $(ev.target).hasClass('active');
+      $(ev.target).toggleClass('active');
+      $('.active').not(ev.target).removeClass('active');
+      $('#questions').trigger('filter', {
+        results: isActive ? [] : search(fuse.categories, value),
+        input: isActive ? '' : value,
+      });
     });
+    $('#categories ul').append($('<li></li>').append(button));
   });
 });

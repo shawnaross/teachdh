@@ -1,7 +1,9 @@
 ---
 layout: teachdh
 ---
+{% include categories.html %}
 {% include searchBar.html %}
+{% include titleList.html %}
 <section id="questions">
   {% for post in site.posts %}
   <article id="{{ post.title | slugify }}">
@@ -9,10 +11,10 @@ layout: teachdh
       <h1>{{ post.title | escape }}</h1>
       <ul>
         {% for category in post.categories %}
-        <li><button data-target="{{catergory | escape}}">{{ category |escape }}</button></li>
+        <li>{{category}}</li>
         {% endfor %}
       </ul>
-    </header>
+    </header> 
     <main>
       {{ post.content |markdownify }}
     </main>
