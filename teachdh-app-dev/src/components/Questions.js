@@ -7,8 +7,6 @@ const Questions = (props) => {
     results,
   } = props;
 
-  console.log(results);
-
   return (<section>
     {(results.length === 0 ? data : results).map((question, i) => (
       <article key={i}>
@@ -21,11 +19,11 @@ const Questions = (props) => {
           </ul>
         </header>
         <main>
-          <ReactMarkdown source={question.content} />
+          <ReactMarkdown source={question.rendered_content} />
         </main>
       </article>
     ))}
-  </section>)
+  </section>);
 }
 
 export default Questions;

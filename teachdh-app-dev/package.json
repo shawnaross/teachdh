@@ -19,10 +19,11 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "purge": "rm -rf ../static && cp -fR ./build/* ../",
-    "frontmatter": "echo '---\nlayout: null\n---\n' | cat - ../index.html > temp && mv temp ../index.html",
+    "purge": "rm -rf ../app/static && cp -fR ./build/* ../app",
+    "frontmatter": "node scripts/buildHtml.js > ../index.html && rm ../app/index.html",
     "deploy": "npm run purge && npm run frontmatter"
   },
+  "homepage": "/app/",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -37,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.3"
   }
 }

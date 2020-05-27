@@ -7,11 +7,13 @@ import SearchBar from './components/SearchBar';
 
 const filterCategory = (list, category) => filter(propSatisfies(contains(category), 'categories'), list)
 
-const App = () => {
-  const data = window.teachDHData;
+const App = (props) => {
+  const {
+    data
+  } = props;
   const fuse = new Fuse(data, {
     keys: [
-      'content',
+      'rendered_content',
       'title',
     ]
   });
