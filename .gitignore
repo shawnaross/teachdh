@@ -1,0 +1,5 @@
+_site
+.sass-cache
+.jekyll-metadata
+teachdh-app-dev/node_modules
+teachdh-app-dev/build
