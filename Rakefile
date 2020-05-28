@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'fileutils'
 
 task :serve do
@@ -6,7 +7,8 @@ task :serve do
 end
 
 task :deploy do
-  system 'git subtree push --prefix _site origin gh-pages'
+  system 'env GIT_DEPLOY_DIR="_site" GIT_DEPLOY_BRANCH="gh-pages"'\
+    ' /bin/sh _scripts/deploy.sh'
 end
 
 namespace :build do
@@ -34,10 +36,6 @@ namespace :build do
       system "./node_modules/.bin/postcss #{filename} -o #{filename}"
     end
     $stdout.puts 'done'
-    # $stdout.print 'Embedding Assets...'
-    # $stdout.flush
-    # system 'node _scripts/embed-assets.js `find _site -name "*.html"`'
-    # $stdout.puts 'done'
   end
   task :clean do
     FileUtils.rm_rf('_site/questions')
