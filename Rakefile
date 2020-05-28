@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'fileutils'
 
 task :serve do
   system 'bundle exec jekyll serve'
@@ -38,7 +39,10 @@ namespace :build do
     # system 'node _scripts/embed-assets.js `find _site -name "*.html"`'
     # $stdout.puts 'done'
   end
-  task all: %i[jekyll compress]
+  task :clean do
+    FileUtils.rm_rf('_site/questions')
+  end
+  task all: %i[jekyll compress clean]
 end
 
 task build: ['build:all']
