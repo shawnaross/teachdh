@@ -17,6 +17,19 @@
   },
   "homepage": "https://github.com/oncomouse/teachdh-test#readme",
   "devDependencies": {
-    "lorem-ipsum": "^2.0.3"
+    "autoprefixer": "^9.8.0",
+    "cssnano": "^4.1.10",
+    "html-minifier": "^4.0.0",
+    "lorem-ipsum": "^2.0.3",
+    "postcss-cli": "^7.1.1",
+    "uglify-js": "^3.9.4"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {},
+      "cssnano": {
+        "preset": "default"
+      }
+    }
   }
 }
