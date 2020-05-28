@@ -9,5 +9,5 @@ function uniq(list) {
 
 function flatten(list, d) {
   var d = d || Infinity;
-  return d > 0 ? list.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatten(val, d - 1) : val), []) : list.slice();
+  return d > 0 ? list.reduce(function (acc, val) {return acc.concat(Array.isArray(val) ? flatten(val, d - 1) : val)}, []) : list.slice();
 }
