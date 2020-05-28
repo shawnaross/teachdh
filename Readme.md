@@ -8,8 +8,6 @@ The main styles for the page are located in `assets/css/site.scss`. This [Sass](
 
 The layout for the site is located in `_layouts/teachdh.html`. The `{{ content }}` tag will be replaced with the code to bootstrap the React app.
 
-**Important**: Do not edit the files in `app/`. That file is built by Create React App and is not intended to be human-readable or editable. If you need to change the JavaScript portions of the site, such as how questions are formatted or displayed, see "Making Changes to the React App" below.
-
 ## Adding Questions
 
 We use Jekyll's [blogging features](https://jekyllrb.com/docs/posts/) to handle posts. To create a post, add a new Markdown file (`.md` extension) or HTML file (`.html` extension) to the `_posts/` directory. The file must be named in the following form:
@@ -23,22 +21,3 @@ The dates don't matter for the purposes of this site, but earlier dates will dis
 ## Building the Site
 
 To build the site, run `jekyll build` and upload the contents of the `_site` directory to your desired static host.
-
-**Note**: This site uses a custom plugin and cannot be deployed to GitHub Pages.
-
-## Making Changes to the React App
-
-The React app is housed in `teachdh-app-dev/` and uses the [Yarn](https://yarnpkg.com/) to manage build and packages.
-
-**Important:** Do not edit any of the files in the `app/` directory. This directory is built by Create React App and is not intended to be human-readable.
-
-To get started, after installing Node.js and Yarn, in `teachdh-app-dev/`, run `yarn install` to download the required packages.
-
-To test changes, run `yarn start` to start a test server.
-
-When the app is working as you want, run `yarn deploy` to build an updated version of the app for Jekyll.
-
-## Resources Used
-
-* [How I Use React in Jekyll](https://www.blairanderson.co/2020/create-react-jekyll/)
-* [Outputing Markdown from Jekyll Using Hooks](https://humanwhocodes.com/blog/2019/04/jekyll-hooks-output-markdown/)

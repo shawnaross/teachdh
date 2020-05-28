@@ -18,6 +18,7 @@ function makePost() {
   const month = 1 + Math.floor(Math.random() * 12);
   const day = 1 + Math.floor(Math.random() * 28);
   fs.writeFileSync(`_posts/${year}-${month}-${day}-${lorem.generateWords(1)}.md`, `---
+title: "${lorem.generateWords(15)}"
 categories:
   - ${lorem.generateWords(categories).split(' ').join('\n  - ')}
 ---
