@@ -24,11 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
         'content',
       ],
     }),
-    categories: new Fuse(fuseData, {
-      keys: [
-        'categories',
-      ],
-    })
   };
   // Title List event handler:
   document.querySelector('#titleList').addEventListener('results', function (ev) {
@@ -102,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       document.querySelector('#questions').dispatchEvent(new CustomEvent('filter', {
         detail: {
-          results: isActive ? [] : search(fuse.categories, value),
+          results: isActive ? [] : fuseData.filter(function (x) {return x.categories.indexOf(value) >= 0}),
           input: isActive ? '' : value,
         }
       }));
