@@ -24,8 +24,8 @@ Here's a sample Markdown question file:
 ---
 title: "Is This a Question?"
 categories:
-	- Chapter 1
-	- FAQ
+  - Chapter 1
+  - FAQ
 ---
 This is the answer to the above question.
 
