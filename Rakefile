@@ -17,7 +17,7 @@ namespace :build do
   end
 
   task :compress do
-    $stdout.print 'Compressing site.js...'
+    $stdout.print 'Compressing *.js...'
     $stdout.flush
     Dir.glob('_site/**/*.js') do |filename|
       system "./node_modules/.bin/uglifyjs -o #{filename} #{filename}"
