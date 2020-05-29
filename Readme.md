@@ -50,7 +50,7 @@ Run `bundle exec jekyll serve` to start a development server. It will run on [ht
 
 To build the site, run `bundle exec jekyll build` and upload the contents of the `_site` directory to your desired static host.
 
-Or, push to a GitHub repository and [set the Pages setting to `master`](https://help.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#choosing-a-publishing-source).
+Or, push to a GitHub repository and [the repository's publishing source must be set to `master`](https://help.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#choosing-a-publishing-source).
 
 ### Advanced Mode
 
