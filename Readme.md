@@ -2,11 +2,19 @@
 
 To build a live searchable FAQ as a companion to the second edition of [*Using Digital Humanities in the Classroom*](https://www.bloomsbury.com/uk/using-digital-humanities-in-the-classroom-9781350029750/), a combination of [Jekyll](https://github.com/jekyll/jekyll) and [Create React App](https://github.com/facebook/create-react-app) was used. The React App, located in `teachdh-app-dev/` folder, renders the content and coordinates the fuzzy search and filtering of questions. Jekyll, which is the main app, handles post creation and site building.
 
+## Getting Started
+
+To develop this site, you will need Ruby and Bundler installed. Install ruby for your system, as you see fit. Note macOS ships with an out-dated version of Ruby, so you will need to use something like [Homebrew](https://brew.sh/) to install it.
+
+With Ruby installed, run `gem install bundler` to install the software we need to build the site.
+
+Once Ruby and Bundler are working, run `bundle install` in the directory you cloned from GitHub and you should have a working copy of the site.
+
 ## Updating the Site Layout
 
-The main styles for the page are located in `assets/css/site.scss`. This [Sass](https://sass-lang.com/) file has style hooks for all the page elements in the site. Editing it will update page styles.
+The main styles for the page are located in `assets/css/site.scss`. This is [Sass](https://sass-lang.com/) file and will update page styles.
 
-The layout for the site is located in `_layouts/teachdh.html`. The `{{ content }}` tag will be replaced with the questions.
+The layout for the site is located in `_layouts/teachdh.html`. The `{{ content }}` tag will be replaced with the questions. Jekyll will process [Liquid](https://jekyllrb.com/docs/liquid/) tags in this file.
 
 ## Adding Questions
 
@@ -32,20 +40,26 @@ This is the answer to the above question.
 It is a question!
 ~~~
 
+## Testing the Site
+
+Run `bundle exec jekyll serve` to start a development server. It will run on [http://localhost:4000](http://localhost:4000).
+
 ## Building the Site
 
 ### Basic Mode
 
-To build the site, run `jekyll build` and upload the contents of the `_site` directory to your desired static host.
+To build the site, run `bundle exec jekyll build` and upload the contents of the `_site` directory to your desired static host.
 
 Or, push to a GitHub repository and [set the Pages setting to `master`](https://help.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#choosing-a-publishing-source).
 
 ### Advanced Mode
 
-If you would like to compress assets and HTML files and generally build a smaller version of the site, you have to have Node.js installed.
+If you would like to compress assets and HTML files and generally build a smaller, more performant version of the site, you have to have [Node.js](https://nodejs.org/en/) installed.
 
-When you do, run `npm install` to install the required libraries. You will also need to install rake, with `gem install rake`.
+When you do, run `npm install` in the directory to install the required libraries.
 
-Then, instead of running `jekyll build` as above, run `rake build` to build the site and upload the contents of `_site` to your desired static host. The Rake file will also deploy to the `gh-pages` branch for GitHub Pages using `rake deploy`.
+Then, instead of running `bundle exec jekyll build` as above, run `bundle exec rake build` to build the site and upload the contents of `_site` to your desired static host.
+
+The Rake file will also deploy to the `gh-pages` branch for GitHub Pages using `bundle exec rake deploy`.
 
 For deployment to GitHub Pages to work, [the repository's publishing source must be set to `gh-pages`](https://help.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#choosing-a-publishing-source).
