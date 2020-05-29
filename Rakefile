@@ -36,14 +36,14 @@ namespace :compress do
     $stdout.print 'Compressing *.js...'
     $stdout.flush
     Dir.glob('_site/**/*.js') do |filename|
-      system "./node_modules/.bin/uglifyjs -o #{filename} #{filename}"
+      system "npx --no-install uglifyjs -o #{filename} #{filename}"
     end
     $stdout.puts 'done'
   end
   task :html do
     $stdout.print 'Compressing *.html...'
     $stdout.flush
-    system './node_modules/.bin/html-minifier --input-dir _site' \
+    system 'npx --no-install html-minifier --input-dir _site' \
       ' --output-dir _site --file-ext html --collapse-whitespace' \
       ' --remove-comments --remove-attribute-quotes --remove-empty-attributes' \
       ' --use-short-doctype --minify-js --minify-css'
@@ -53,7 +53,7 @@ namespace :compress do
     $stdout.print 'Compressing *.css...'
     $stdout.flush
     Dir.glob('_site/**/*.css') do |filename|
-      system "./node_modules/.bin/postcss #{filename} -o #{filename}"
+      system "npx --no-install postcss #{filename} -o #{filename}"
     end
     $stdout.puts 'done'
   end
