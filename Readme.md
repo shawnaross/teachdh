@@ -20,7 +20,7 @@ The dates don't matter for the purposes of this site, but earlier dates will dis
 
 Here's a sample Markdown question file:
 
-~~~
+~~~markdown
 ---
 title: "Is This a Question?"
 categories:
