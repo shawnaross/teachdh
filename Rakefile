@@ -15,28 +15,7 @@ namespace :build do
   task :jekyll do
     system 'env JEKYLL_ENV=production bundle exec jekyll build'
   end
-
-  task :compress do
-    $stdout.print 'Compressing *.js...'
-    $stdout.flush
-    Dir.glob('_site/**/*.js') do |filename|
-      system "./node_modules/.bin/uglifyjs -o #{filename} #{filename}"
-    end
-    $stdout.puts 'done'
-    $stdout.print 'Compressing *.html...'
-    $stdout.flush
-    system './node_modules/.bin/html-minifier --input-dir _site' \
-      ' --output-dir _site --file-ext html --collapse-whitespace' \
-      ' --remove-comments --remove-attribute-quotes --remove-empty-attributes' \
-      ' --use-short-doctype --minify-js --minify-css'
-    $stdout.puts 'done'
-    $stdout.print 'Compressing *.css...'
-    $stdout.flush
-    Dir.glob('_site/**/*.css') do |filename|
-      system "./node_modules/.bin/postcss #{filename} -o #{filename}"
-    end
-    $stdout.puts 'done'
-  end
+  task compress: %i[compress:js compress:html compress:css]
   task :embed do
     $stdout.print 'Packing and embedding assets...'
     $stdout.flush
@@ -50,6 +29,34 @@ namespace :build do
     system 'find _site/ -empty -type d -delete'
   end
   task all: %i[jekyll compress embed clean]
+end
+
+namespace :compress do
+  task :js do
+    $stdout.print 'Compressing *.js...'
+    $stdout.flush
+    Dir.glob('_site/**/*.js') do |filename|
+      system "./node_modules/.bin/uglifyjs -o #{filename} #{filename}"
+    end
+    $stdout.puts 'done'
+  end
+  task :html do
+    $stdout.print 'Compressing *.html...'
+    $stdout.flush
+    system './node_modules/.bin/html-minifier --input-dir _site' \
+      ' --output-dir _site --file-ext html --collapse-whitespace' \
+      ' --remove-comments --remove-attribute-quotes --remove-empty-attributes' \
+      ' --use-short-doctype --minify-js --minify-css'
+    $stdout.puts 'done'
+  end
+  task :css do
+    $stdout.print 'Compressing *.css...'
+    $stdout.flush
+    Dir.glob('_site/**/*.css') do |filename|
+      system "./node_modules/.bin/postcss #{filename} -o #{filename}"
+    end
+    $stdout.puts 'done'
+  end
 end
 
 task build: ['build:all']
