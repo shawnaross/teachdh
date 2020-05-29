@@ -40,7 +40,7 @@ namespace :build do
   task :embed do
     $stdout.print 'Packing and embedding assets...'
     $stdout.flush
-    system 'node _scripts/embed-js.js `find _site -name "*.html"`'
+    system 'node _scripts/embed-js.js --delete `find _site -name "*.html"`'
     $stdout.puts 'done'
   end
   task :clean do

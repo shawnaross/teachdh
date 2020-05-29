@@ -2,11 +2,16 @@ const fs = require('fs');
 const path = require('path');
 const {JSDOM} = require('jsdom');
 const yaml = require('js-yaml');
+const _argv = process.argv.slice(2)
+// Use --delete to delete files after process them
+// Use --inline to replace file inclusions with file source.
+// If --inline is not used, all CSS and JS assets are packed into a single file
+// which is included.
 const argv = {
-  inline: process.argv.slice(2).indexOf('--inline') >= 0,
-  _: process.argv.slice(2).filter(x => x !== '--inline'),
+  delete: _argv.indexOf('--delete') >= 0,
+  inline: _argv.indexOf('--inline') >= 0,
+  _: _argv.filter(x => x.indexOf('--') !== 0),
 }
-// Use with --inline to replace inclusions with their file source
 
 const config = yaml.safeLoad(fs.readFileSync(__dirname + '/../_config.yml'));
 config.baseurl = config.baseurl || '';
@@ -22,7 +27,9 @@ const processInclude = (el, type, files) => {
     const fileName = path.join(...src.replace(`${config.url}${config.baseurl}/`, './_site/').split('/'));
     const fileSrc = fs.readFileSync(fileName).toString();
     files.addFile(src, fileSrc);
-    fs.unlinkSync(fileName);
+    if (argv.delete) {
+      fs.unlinkSync(fileName);
+    }
   }
   if (argv.inline) {
     // Write the file as an inline inclusion:
@@ -59,11 +66,11 @@ argv._.forEach((file) => {
   const html = fs.readFileSync(file);
   const dom = (new JSDOM(html))
   const document = dom.window.document;
-  const seenCss = Array.from(document.querySelectorAll('link[href]')).reduce((seen, el) => {
+  const seenCss = Array.from(document.querySelectorAll('link[href]')).reduce((_seen, el) => {
     processInclude(el, 'css', files);
     return true;
   }, false);
-  const seenJs = Array.from(document.querySelectorAll('script[src]')).reduce((seen, el) => {
+  const seenJs = Array.from(document.querySelectorAll('script[src]')).reduce((_seen, el) => {
     processInclude(el, 'js', files);
     return true;
   }, false);
