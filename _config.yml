@@ -26,6 +26,8 @@ url: ""  # the base hostname & protocol for your site, e.g. http://example.com
 # Build settings
 markdown: kramdown
 plugins: []
+sass:
+  sourcemap: never
 
 # Make it easier to remove individual post pages:
 permalink: /questions/:title:output_ext

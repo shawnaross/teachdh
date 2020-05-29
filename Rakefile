@@ -8,7 +8,7 @@ end
 
 task :deploy do
   system 'env GIT_DEPLOY_DIR="_site" GIT_DEPLOY_BRANCH="gh-pages"'\
-    ' /bin/sh _scripts/deploy.sh'
+    ' /bin/bash _scripts/deploy.sh'
 end
 
 namespace :build do
@@ -37,10 +37,19 @@ namespace :build do
     end
     $stdout.puts 'done'
   end
-  task :clean do
-    FileUtils.rm_rf('_site/questions')
+  task :embed do
+    $stdout.print 'Packing and embedding assets...'
+    $stdout.flush
+    system 'node _scripts/embed-js.js `find _site -name "*.html"`'
+    $stdout.puts 'done'
   end
-  task all: %i[jekyll compress clean]
+  task :clean do
+    # Remove questions:
+    FileUtils.rm_rf('_site/questions')
+    # Remove empty asset dirs:
+    system 'find _site/ -empty -type d -delete'
+  end
+  task all: %i[jekyll compress embed clean]
 end
 
 task build: ['build:all']
