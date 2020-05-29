@@ -6,17 +6,31 @@ To build a live searchable FAQ as a companion to the second edition of [*Using D
 
 The main styles for the page are located in `assets/css/site.scss`. This [Sass](https://sass-lang.com/) file has style hooks for all the page elements in the site. Editing it will update page styles.
 
-The layout for the site is located in `_layouts/teachdh.html`. The `{{ content }}` tag will be replaced with the code to bootstrap the React app.
+The layout for the site is located in `_layouts/teachdh.html`. The `{{ content }}` tag will be replaced with the questions.
 
 ## Adding Questions
 
-We use Jekyll's [blogging features](https://jekyllrb.com/docs/posts/) to handle posts. To create a post, add a new Markdown file (`.md` extension) or HTML file (`.html` extension) to the `_posts/` directory. The file must be named in the following form:
+We use Jekyll's [blogging features](https://jekyllrb.com/docs/posts/) to handle questions. To create a post, add a new Markdown file (`.md` extension) or HTML file (`.html` extension) to the `_posts/` directory. The file must be named in the following form:
 
 ~~~
-YEAR-MONTH-DAY-title.MARKUP
+YEAR-MONTH-DAY-TITLE.MARKUP
 ~~~
 
-The dates don't matter for the purposes of this site, but earlier dates will display before later dates, so you can use the date of the post to sort questions on the main page.
+The dates don't matter for the purposes of this site, but earlier dates will display before later dates, so you can use the date of the post to sort questions on the main page. `TITLE` can be anything in this context. It's easier to set the title in YAML front matter of the post (see an example below).
+
+Here's a sample Markdown question file:
+
+~~~
+---
+title: "Is This a Question?"
+categories:
+	- Chapter 1
+	- FAQ
+---
+This is the answer to the above question.
+
+It is a question!
+~~~
 
 ## Building the Site
 
