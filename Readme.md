@@ -24,6 +24,8 @@ The dates don't matter for the purposes of this site, but earlier dates will dis
 
 To build the site, run `jekyll build` and upload the contents of the `_site` directory to your desired static host.
 
+Or, push to a GitHub repository and [set the Pages setting to `master`](https://help.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#choosing-a-publishing-source).
+
 ### Advanced Mode
 
 If you would like to compress assets and HTML files and generally build a smaller version of the site, you have to have Node.js installed.
@@ -31,3 +33,5 @@ If you would like to compress assets and HTML files and generally build a smalle
 When you do, run `npm install` to install the required libraries. You will also need to install rake, with `gem install rake`.
 
 Then, instead of running `jekyll build` as above, run `rake build` to build the site and upload the contents of `_site` to your desired static host. The Rake file will also deploy to the `gh-pages` branch for GitHub Pages using `rake deploy`.
+
+For deployment to GitHub Pages to work, [the repository's publishing source must be set to `gh-pages`](https://help.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#choosing-a-publishing-source).
