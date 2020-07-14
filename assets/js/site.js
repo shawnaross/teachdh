@@ -2,8 +2,8 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Class definitions:
   var ACTIVE_CLASS = 'white bg-dark-blue';
-  var INACTIVE_CLASS = 'black bg-white';
-  var BUTTON_CLASS = 'f6 grow no-underline br-pill ba ph3 pv2 mb2 mr2 black bg-white b--black pointer';
+  var INACTIVE_CLASS = 'black bg-white hover-bg-moon-gray';
+  var BUTTON_CLASS = 'f6 grow no-underline br-pill ba ph3 pv2 mb2 mr2 black bg-white b--black hover-bg-moon-gray pointer';
   var TITLE_LIST_CLASS = 'mw7 center db pl0';
   var TITLE_LIST_ITEM_CLASS = 'mv1';
 
