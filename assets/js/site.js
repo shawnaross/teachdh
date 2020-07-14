@@ -1,3 +1,4 @@
+/* globals pipe, pluck, nl2array, uniq, flatten, Fuse, show, hide, hasClass, toggleClass */
 var ACTIVE_CLASS = 'active';
 
 function search(fuse, target) {
