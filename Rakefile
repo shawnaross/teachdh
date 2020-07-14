@@ -36,7 +36,7 @@ namespace :compress do
     $stdout.print 'Compressing *.js...'
     $stdout.flush
     Dir.glob('_site/**/*.js') do |filename|
-      system "npx --no-install uglifyjs -c -m --toplevel -o #{filename} #{filename}"
+      system "npx --no-install uglifyjs -c -m -o #{filename} #{filename}"
     end
     $stdout.puts 'done'
   end
