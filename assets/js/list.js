@@ -1,0 +1,1 @@
+function pluck(r,n){return n.map(function(n){return n[r]})}function uniq(t){return t.filter(function(n,r){return t.indexOf(n)===r})}function flatten(n,t){return 0<(t=t||1/0)?n.reduce(function(n,r){return n.concat(Array.isArray(r)?flatten(r,t-1):r)},[]):n.slice()}
