@@ -11,31 +11,34 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/richleland/pygments-css@master/default.min.css">
   <link rel="stylesheet" href="{{"assets/css/site.css" | absolute_url}}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tachyons@4.12.0/css/tachyons.min.css">
   <script
     src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.filter%2CArray.prototype.map%2CArray.prototype.reduce%2CElement.prototype.classList%2Csmoothscroll"></script>
   <script src="https://cdn.jsdelivr.net/npm/stickyfilljs@2.1.0/dist/stickyfill.min.js"></script>
 </head>
 
-<body>
-  <div class="container">
-  <h1>
+<body class="sans-serif ma2 ma0-ns">
+  <h1 class="mt5 mb4 mw7 w-100 center">
     <em>Using Digitial Humanities in the Classroom</em>
-    <small>Digital Companion</small>
+    <small class="ml3 db">Digital Companion</small>
   </h1>
-  <div id="controls" style="top: 0; position: sticky;">
-    <div id="categories">
-      <h2>Filter By Categories</h2>
-      <ul></ul>
+  <div id="controls" class="bg-white pv1" style="top: 0; position: sticky;">
+    <div id="categories" class="tc">
+      <h2 class="f6 b db mb2">Filter By Categories</h2>
+      <ul class="list mv0"></ul>
     </div>
-    <label for="searchBar">Search FAQs</label>
-    <input type="text" id="searchBar" value="" aria-describedby="searchBar-desc" />
-    <small id="searchBar-desc">Input a search terms to see related questions and answers.</small>
+    <div class="tc mv3 mw7 w-100 center">
+      <label for="searchBar" class="f6 b db mb2">Search FAQs</label>
+      <input class="w-90 input-reset ba b--black-20 pa2 mb2" type="text" id="searchBar" value=""
+        aria-describedby="searchBar-desc" />
+      <small id="searchBar-desc" class="f6 black-60 db mb2">Input a search terms to see related questions and
+        answers.</small>
+    </div>
     <div id="titleList"></div>
   </div>
-  <section id="questions">
+  <section id="questions" class="w-100 mw7 center">
     {{ content }}
   </section>
-  </div>
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.0.0/dist/fuse.basic.min.js"></script>
   <script src="{{"assets/js/list.js" | absolute_url }}"></script>
   <script src="{{"assets/js/dom.js" | absolute_url }}"></script>
