@@ -1,7 +1,57 @@
-/* globals pluck, nl2array, uniq, flatten, Fuse, show, hide, hasClass, toggleClass */
+/* globals Fuse, Stickyfill */
 document.addEventListener('DOMContentLoaded', function () {
+  // CSS Classes:
   var ACTIVE_CLASS = 'active';
+  // DOM Helpers:
+  function nl2array(nodeList) {
+    return nodeList === null ? [] : Array.prototype.slice.call(nodeList);
+  }
 
+  function hasClass(el, cl) {
+    return cl.split(' ').reduce(function (found, c) {return found ? found : el.classList.contains(c)}, false)
+  }
+
+  function toggleClass(el, cl) {
+    cl.split(' ').forEach(function (c) {el.classList.toggle(c)})
+  }
+
+  function show(element) {
+    if (!element.hasAttribute('data-display')) {
+      var temp = document.body.appendChild(document.createElement(element.nodeName));
+      element.setAttribute('data-display', window.getComputedStyle(element).getPropertyValue('display'));
+      document.body.removeChild(temp);
+    }
+    element.style.display = element.getAttribute('data-display');
+  }
+
+  function hide(element) {
+    if (!element.hasAttribute('data-display')) {
+      var temp = document.body.appendChild(document.createElement(element.nodeName));
+      element.setAttribute('data-display', window.getComputedStyle(element).getPropertyValue('display'));
+      document.body.removeChild(temp);
+    }
+    element.style.display = 'none';
+  }
+
+  function hidden(element) {
+    return element.style.display === 'none';
+  }
+
+  // List Helpers:
+  function pluck(key, list) {
+    return list.map(function (item) {return item[key];});
+  }
+
+  function uniq(list) {
+    return list.filter(function (item, index) {return list.indexOf(item) === index});
+  }
+
+  function flatten(list, d) {
+    d = d || Infinity;
+    return d > 0 ? list.reduce(function (acc, val) {return acc.concat(Array.isArray(val) ? flatten(val, d - 1) : val)}, []) : list.slice();
+  }
+
+  // Search Helper:
   function search(fuse, target) {
     return pluck('item', fuse.search(target));
   }
@@ -25,6 +75,9 @@ document.addEventListener('DOMContentLoaded', function () {
       ],
     }),
   };
+  // Activate Stickyfill:
+  Stickyfill.add(document.querySelector('#controls'));
+
   // Title List event handler:
   document.querySelector('#titleList').addEventListener('results', function (ev) {
     var input = ev.detail.input;
@@ -39,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
         link.innerHTML = result.title;
         link.addEventListener('click', function (ev) {
           ev.preventDefault();
-          document.querySelector('#titleList').style.display = 'none';
+          hide(document.querySelector('#titleList'))
           document.querySelector('#' + result.id).scrollIntoView({behavior: 'smooth'});
         });
         var item = document.createElement('LI');
@@ -65,8 +118,8 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   // Show TitleList on focus:
   document.querySelector('#searchBar').addEventListener('focus', function () {
-    if (document.querySelector('#titleList').style.display === 'none') {
-      document.querySelector('#titleList').style.display = 'block';
+    if (hidden(document.querySelector('#titleList'))) {
+      show(document.querySelector('#titleList'))
     }
   })
   // Filters as the user types in the search bar:
