@@ -92,6 +92,10 @@ document.addEventListener('DOMContentLoaded', function () {
         link.innerHTML = result.title;
         link.addEventListener('click', function (ev) {
           ev.preventDefault();
+          nl2array(document.querySelectorAll('.' + ACTIVE_CLASS.replace(/ /g, '.')))
+            .forEach(function (element) {
+              toggleClass(element, ACTIVE_CLASS);
+            });
           hide(document.querySelector('#titleList'))
           document.querySelector('#' + result.id).scrollIntoView({behavior: 'smooth'});
         });
@@ -150,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var value = ev.target.getAttribute('data-target');
       var isActive = hasClass(ev.target, ACTIVE_CLASS);
       toggleClass(ev.target, ACTIVE_CLASS);
-      nl2array(document.querySelectorAll('.' + ACTIVE_CLASS))
+      nl2array(document.querySelectorAll('.' + ACTIVE_CLASS).replace(/ /g, '.'))
         .filter(function (element) {return element !== ev.target})
         .forEach(function (element) {
           toggleClass(element, ACTIVE_CLASS);
