@@ -1,10 +1,9 @@
 function nl2array(nodeList) {
-  return Array.prototype.slice.call(nodeList);
+  return nodeList === null ? [] : Array.prototype.slice.call(nodeList);
 }
 
 function hasClass(el, clss) {
-  return el.className && new RegExp("(^|\\s)" +
-    clss + "(\\s|$)").test(el.className);
+  return new RegExp("(^|\\s)" + clss + "(\\s|$)").test(el.className);
 }
 
 function toggleClass(el, clss) {
