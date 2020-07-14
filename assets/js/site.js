@@ -1,11 +1,10 @@
-/* globals pipe, pluck, nl2array, uniq, flatten, Fuse, show, hide, hasClass, toggleClass */
-var ACTIVE_CLASS = 'active';
-
-function search(fuse, target) {
-  return pluck('item', fuse.search(target));
-}
-
+/* globals pluck, nl2array, uniq, flatten, Fuse, show, hide, hasClass, toggleClass */
 document.addEventListener('DOMContentLoaded', function () {
+  var ACTIVE_CLASS = 'active';
+
+  function search(fuse, target) {
+    return pluck('item', fuse.search(target));
+  }
   // Data structures:
   var fuseData = nl2array(document.querySelectorAll('article')).map(function (article) {
     return {
