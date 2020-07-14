@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         link.innerHTML = result.title;
         link.addEventListener('click', function (ev) {
           ev.preventDefault();
+          document.querySelector('#titleList').style.display = 'none';
           document.querySelector('#' + result.id).scrollIntoView({behavior: 'smooth'});
         });
         var item = document.createElement('LI');
@@ -62,6 +63,12 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   });
+  // Show TitleList on focus:
+  document.querySelector('#searchBar').addEventListener('focus', function () {
+    if (document.querySelector('#titleList').style.display === 'none') {
+      document.querySelector('#titleList').style.display = 'block';
+    }
+  })
   // Filters as the user types in the search bar:
   document.querySelector('#searchBar').addEventListener('input', function (ev) {
     ev.preventDefault();
