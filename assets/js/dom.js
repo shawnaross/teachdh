@@ -2,12 +2,12 @@ function nl2array(nodeList) {
   return nodeList === null ? [] : Array.prototype.slice.call(nodeList);
 }
 
-function hasClass(el, clss) {
-  return new RegExp("(^|\\s)" + clss + "(\\s|$)").test(el.className);
+function hasClass(el, cl) {
+  return cl.split(' ').reduce(function (found, c) {return found ? found : el.classList.contains(c)}, false)
 }
 
-function toggleClass(el, clss) {
-  el.classList.toggle(clss);
+function toggleClass(el, cl) {
+  cl.split(' ').forEach(function (c) {el.classList.toggle(c)})
 }
 
 function show(element) {
