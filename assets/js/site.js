@@ -1,13 +1,64 @@
-/* globals Fuse, Stickyfill, pluck, nl2array, uniq, flatten, show, hide, hasClass, toggleClass */
+/* globals Fuse, Stickyfill */
 document.addEventListener('DOMContentLoaded', function () {
-  Stickyfill.add(document.querySelector('#controls'));
-  var ACTIVE_CLASS = 'bg-moon-gray';
-  var INACTIVE_CLASS = 'bg-white';
+  // Class definitions:
+  var ACTIVE_CLASS = 'white bg-dark-blue';
+  var INACTIVE_CLASS = 'black bg-white';
   var BUTTON_CLASS = 'f6 grow no-underline br-pill ba ph3 pv2 mb2 mr2 black bg-white b--black pointer';
+  var TITLE_LIST_CLASS = 'mw7 center db pl0';
+  var TITLE_LIST_ITEM_CLASS = 'mv1';
 
+  // DOM Helper functions:
+  function nl2array(nodeList) {
+    return nodeList === null ? [] : Array.prototype.slice.call(nodeList);
+  }
+
+  function hasClass(el, cl) {
+    return cl.split(' ').reduce(function (found, c) {return found ? found : el.classList.contains(c)}, false)
+  }
+
+  function toggleClass(el, cl) {
+    cl.split(' ').forEach(function (c) {el.classList.toggle(c)})
+  }
+
+  function show(element) {
+    if (!element.hasAttribute('data-display')) {
+      var temp = document.body.appendChild(document.createElement(element.nodeName));
+      element.setAttribute('data-display', window.getComputedStyle(element).getPropertyValue('display'));
+      document.body.removeChild(temp);
+    }
+    element.style.display = element.getAttribute('data-display');
+  }
+  function hide(element) {
+    if (!element.hasAttribute('data-display')) {
+      var temp = document.body.appendChild(document.createElement(element.nodeName));
+      element.setAttribute('data-display', window.getComputedStyle(element).getPropertyValue('display'));
+      document.body.removeChild(temp);
+    }
+    element.style.display = 'none';
+  }
+  function hidden(element) {
+    return element.style.display === 'none';
+  }
+
+  // Search helper function:
   function search(fuse, target) {
     return pluck('item', fuse.search(target));
   }
+
+  // Utility functions:
+  function pluck(key, list) {
+    return list.map(function (item) {return item[key];});
+  }
+
+  function uniq(list) {
+    return list.filter(function (item, index) {return list.indexOf(item) === index});
+  }
+
+  function flatten(list, d) {
+    d = d || Infinity;
+    return d > 0 ? list.reduce(function (acc, val) {return acc.concat(Array.isArray(val) ? flatten(val, d - 1) : val)}, []) : list.slice();
+  }
+
   // Data structures:
   var fuseData = nl2array(document.querySelectorAll('article')).map(function (article) {
     return {
@@ -28,6 +79,8 @@ document.addEventListener('DOMContentLoaded', function () {
       ],
     }),
   };
+  // Load Stickyfill:
+  Stickyfill.add(document.querySelector('#controls'));
   // Title List event handler:
   document.querySelector('#titleList').addEventListener('results', function (ev) {
     var input = ev.detail.input;
@@ -35,19 +88,18 @@ document.addEventListener('DOMContentLoaded', function () {
     if (results.length === 0 && input.length === 0) {
       document.querySelector('#titleList').innerHTML = '';
     } else {
-      document.querySelector('#titleList').innerHTML = '<ul class="mw7 center db pl0"></ul>';
+      document.querySelector('#titleList').innerHTML = '<ul class="' + TITLE_LIST_CLASS + '"></ul>';
       results.map(function (result) {
         var link = document.createElement('A');
         link.href = '#';
         link.innerHTML = result.title;
-        link.className = 'dark-blue no-underline underline-hover'
         link.addEventListener('click', function (ev) {
           ev.preventDefault();
-          document.querySelector('#titleList').style.display = 'none';
+          hide(document.querySelector('#titleList'))
           document.querySelector('#' + result.id).scrollIntoView({behavior: 'smooth'});
         });
         var item = document.createElement('LI');
-        item.className = 'mv1'
+        item.className = TITLE_LIST_ITEM_CLASS
         item.insertAdjacentElement('beforeend', link);
         document.querySelector('#titleList ul').insertAdjacentElement('beforeend', item);
       });
@@ -70,8 +122,8 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   // Show TitleList on focus:
   document.querySelector('#searchBar').addEventListener('focus', function () {
-    if (document.querySelector('#titleList').style.display === 'none') {
-      document.querySelector('#titleList').style.display = 'block';
+    if (hidden(document.querySelector('#titleList'))) {
+      show(document.querySelector('#titleList'))
     }
   })
 
