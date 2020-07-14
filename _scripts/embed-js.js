@@ -19,6 +19,7 @@ config.url = config.url || '';
 
 const processInclude = (el, type, files) => {
   const src = el.getAttribute(type === 'css' ? 'href' : 'src');
+  if (src.indexOf('polyfill.io') >= 0) return;
   if (src.indexOf('cdnjs.cloudflare.com') >= 0) return;
   if (src.indexOf('unpkg.com') >= 0) return;
   if (src.indexOf('rawgit.com') >= 0) return;
