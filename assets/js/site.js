@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var value = ev.target.getAttribute('data-target');
       var isActive = hasClass(ev.target, ACTIVE_CLASS);
       toggleClass(ev.target, ACTIVE_CLASS);
-      nl2array(document.querySelector(ACTIVE_CLASS))
+      nl2array(document.querySelectorAll(ACTIVE_CLASS))
         .filter(function (element) {return element !== ev.target})
         .forEach(function (element) {
           toggleClass(element, ACTIVE_CLASS);
