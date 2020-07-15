@@ -1,76 +1,75 @@
-/* globals Fuse, Stickyfill */
-document.addEventListener('DOMContentLoaded', function () {
+/* globals Fuse, Bacon, Stickyfill, R, $ */
+$(function () {
+  $.fn.scrollTo = function (offset) {
+    offset = offset || 0;
+    window.scrollTo({
+      top: $(this)[0].getBoundingClientRect().top + window.pageYOffset + offset,
+      behavior: 'smooth'
+    });
+  }
+  // Attach Bacon methods to $
+  Bacon.$.init($)
+  // Load Stickyfill. Remove this if there are no sticky elements:
+  Stickyfill.add($('#controls'));
+  // Scroll Offset for questions. This can be set to 0 if there are no stick controls:
+  var SCROLL_OFFSET = -1 * $('#controls').outerHeight(true)
+
   // Class definitions:
-  var ACTIVE_CLASS = 'white bg-dark-blue';
-  var INACTIVE_CLASS = 'black bg-white hover-bg-moon-gray';
+  var ACTIVE_CLASS = 'white bg-dark-blue black bg-white hover-bg-moon-gray';
   var BUTTON_CLASS = 'f6 grow no-underline br-pill ba ph3 pv2 mb2 mr2 black bg-white b--black hover-bg-moon-gray pointer';
   var TITLE_LIST_CLASS = 'mw7 center db pl0';
   var TITLE_LIST_ITEM_CLASS = 'mv1';
+  var CATEGORY_LIST_ITEM_CLASS = 'dib';
 
-  // DOM Helper functions:
-  function nl2array(nodeList) {
-    return nodeList === null ? [] : Array.prototype.slice.call(nodeList);
-  }
-
-  function hasClass(el, cl) {
-    return cl.split(' ').reduce(function (found, c) {return found ? found : el.classList.contains(c)}, false)
-  }
-
-  function toggleClass(el, cl) {
-    cl.split(' ').forEach(function (c) {el.classList.toggle(c)})
-  }
-
-  function show(element) {
-    if (!element.hasAttribute('data-display')) {
-      var temp = document.body.appendChild(document.createElement(element.nodeName));
-      element.setAttribute('data-display', window.getComputedStyle(element).getPropertyValue('display'));
-      document.body.removeChild(temp);
+  // Toggle styles based on Tachyons. Can be rewritten for a different style
+  // system:
+  var toggleStyle = R.curry(function (type, target) {
+    switch (type) {
+      case 'button':
+        return $(target).toggleClass(BUTTON_CLASS)
+      case 'button-active':
+        return $(target).toggleClass(ACTIVE_CLASS)
+      case 'title-list':
+        return $(target).toggleClass(TITLE_LIST_CLASS)
+      case 'title-list-item':
+        return $(target).toggleClass(TITLE_LIST_ITEM_CLASS)
+      case 'category-list-item':
+        return $(target).toggleClass(CATEGORY_LIST_ITEM_CLASS)
+      default:
+        return $(target)
     }
-    element.style.display = element.getAttribute('data-display');
-  }
-  function hide(element) {
-    if (!element.hasAttribute('data-display')) {
-      var temp = document.body.appendChild(document.createElement(element.nodeName));
-      element.setAttribute('data-display', window.getComputedStyle(element).getPropertyValue('display'));
-      document.body.removeChild(temp);
-    }
-    element.style.display = 'none';
-  }
-  function hidden(element) {
-    return element.style.display === 'none';
-  }
+  })
 
-  // Search helper function:
-  function search(fuse, target) {
-    return pluck('item', fuse.search(target));
-  }
-
-  // Utility functions:
-  function pluck(key, list) {
-    return list.map(function (item) {return item[key];});
-  }
-
-  function uniq(list) {
-    return list.filter(function (item, index) {return list.indexOf(item) === index});
-  }
-
-  function flatten(list, d) {
-    d = d || Infinity;
-    return d > 0 ? list.reduce(function (acc, val) {return acc.concat(Array.isArray(val) ? flatten(val, d - 1) : val)}, []) : list.slice();
-  }
-
-  // Data structures:
-  var fuseData = nl2array(document.querySelectorAll('article')).map(function (article) {
+  // Read through the document's Html to build the data structure we will
+  // supply to Fuse:
+  var fuseData = Array.from($('article')).map(function (article) {
     return {
-      id: article.getAttribute('id'),
-      title: article.querySelector('h1').innerText,
-      content: article.querySelector('main').innerText,
-      categories: nl2array(article.querySelectorAll('header li')).map(function (li) {return li.innerText;}),
+      id: $(article).attr('id'),
+      title: $(article).find('h1').text(),
+      content: $(article).find('main').text(),
+      categories: Array.from($(article).find('header li')).map(function (li) {return li.innerText;}),
     };
   });
-  // Extract categories from the above data:
-  var categories = uniq(flatten(pluck('categories', fuseData)));
-  // Generate fuse search objects:
+
+  // Extract categories from the above data and build the list of category
+  // filtering buttons:
+  R.pipe(
+    R.pluck('categories'),
+    R.flatten,
+    R.uniq,
+    R.map(function (category) {
+      var button = $('<button />');
+      button.html(category);
+      toggleStyle('button', button)
+      button.attr('data-target', category);
+      var item = $('<li/>')
+      toggleStyle('category-list-item', item)
+      item.append(button)
+      $('#categories ul').append(item)
+    })
+  )(fuseData)
+
+  // Create the Fuse object:
   var fuse = {
     questions: new Fuse(fuseData, {
       keys: [
@@ -79,108 +78,164 @@ document.addEventListener('DOMContentLoaded', function () {
       ],
     }),
   };
-  // Load Stickyfill:
-  Stickyfill.add(document.querySelector('#controls'));
-  // Title List event handler:
-  document.querySelector('#titleList').addEventListener('results', function (ev) {
-    var input = ev.detail.input;
-    var results = ev.detail.results;
-    if (results.length === 0 && input.length === 0) {
-      document.querySelector('#titleList').innerHTML = '';
-    } else {
-      document.querySelector('#titleList').innerHTML = '<ul class="' + TITLE_LIST_CLASS + '"></ul>';
-      results.map(function (result) {
-        var link = document.createElement('A');
-        link.href = '#';
-        link.innerHTML = result.title;
-        link.addEventListener('click', function (ev) {
-          ev.preventDefault();
-          nl2array(document.querySelectorAll('.' + ACTIVE_CLASS.replace(/ /g, '.')))
-            .forEach(function (element) {
-              toggleClass(element, ACTIVE_CLASS);
-            });
-          document.querySelector('#questions').dispatchEvent(new CustomEvent('filter', {
-            detail: {
-              results: [],
-              input: ''
-            }
-          }));
-          hide(document.querySelector('#titleList'))
-          document.querySelector('#' + result.id).scrollIntoView({behavior: 'smooth'});
-        });
-        var item = document.createElement('LI');
-        item.className = TITLE_LIST_ITEM_CLASS
-        item.insertAdjacentElement('beforeend', link);
-        document.querySelector('#titleList ul').insertAdjacentElement('beforeend', item);
-      });
-    }
-  })
-  // Filter event handler:
-  document.querySelector('#questions').addEventListener('filter', function (ev) {
-    var input = ev.detail.input;
-    var results = ev.detail.results;
-    if (results.length === 0 && input.length === 0) {
-      nl2array(document.querySelectorAll('article')).forEach(function (article) {
-        show(article)
-      });
-    } else {
-      var ids = pluck('id', results);
-      nl2array(document.querySelectorAll('article')).forEach(function (article) {
-        ids.indexOf(article.getAttribute('id')) >= 0 ? show(article) : hide(article)
-      });
-    }
-  });
-  // Show TitleList on focus:
-  document.querySelector('#searchBar').addEventListener('focus', function () {
-    if (hidden(document.querySelector('#titleList'))) {
-      show(document.querySelector('#titleList'))
-    }
+
+  // Helper function for Fuse searches:
+  function search(fuse, target) {
+    return R.pluck('item', fuse.search(target));
+  }
+
+  // This function detects an empty results object, which is used to split
+  // filter and result events into separate streams:
+  var areResultsEmpty = R.where({
+    results: R.pipe(R.length, R.equals(0)),
+    input: R.pipe(R.length, R.equals(0)),
   })
 
-  // Filters as the user types in the search bar:
-  document.querySelector('#searchBar').addEventListener('input', function (ev) {
-    ev.preventDefault();
-    var value = ev.target.value;
-    var results = search(fuse.questions, value);
-    document.querySelector('#questions').dispatchEvent(new CustomEvent('filter', {
-      detail: {
+  // Generate the actions for filter events, whether turning on or turning off
+  var filterHelperFactory = function (clearFilter) {
+    return function () {
+      var results = clearFilter ? [] : arguments[0]
+      var input = clearFilter ? '' : arguments[1]
+      // Trigger the filter event:
+      $('#questions').trigger('filter', {
+        results: results,
+        input: input,
+      })
+    }
+  }
+  // Function to clear any active filters:
+  var clearFilter = filterHelperFactory(true)
+  // Function to attach a filter:
+  var addFilter = filterHelperFactory(false)
+
+  // Create event streams using a pattern that repeats a few times:
+  var eventToResultStream = function (target, event) {
+    return $(target).asEventStream(event, function (_ev, data) {
+      return {
+        input: data.input,
+        results: data.results,
+      }
+    })
+  }
+
+  // Stream that listens for search results:
+  var resultsStream = eventToResultStream('#titleList', 'results')
+
+  // Handle empty results:
+  resultsStream
+    .filter(areResultsEmpty)
+    .onValue(function () {
+      $('#titleList').html('')
+    })
+
+  // Handle results by generating the contents of title list:
+  resultsStream
+    .filter(R.pipe(areResultsEmpty, R.not))
+    .map(R.prop('results'))
+    .onValue(function (results) {
+      $('#titleList').html('<ul></ul>')
+      toggleStyle('title-list', $('#titleList ul'))
+      R.map(function (result) {
+        var item = $.parseHTML(
+          '<li>' +
+          '<a href="#">' + result.title + '</a>' +
+          '</li>'
+        )
+        toggleStyle('title-list-item', item)
+        $(item).find('a').attr('data-result', result.id)
+        $('#titleList ul').append(item)
+      }, results)
+    })
+  // Stream to handle the user clicking on links in the title list:
+  var titleListClickStream = $('#titleList').asEventStream('click', 'a', function (ev) {ev.preventDefault(); return ev.target})
+
+  // On a user click, we hide title list and scroll to target they clicked:
+  titleListClickStream.onValue(function (target) {
+    $('#titleList').hide()
+    $('#' + $(target).attr('data-result')).scrollTo(SCROLL_OFFSET)
+  })
+  // Stream for handling filter events:
+  var filterStream = eventToResultStream('#questions', 'filter')
+  // Clear filters:
+  filterStream
+    .filter(areResultsEmpty)
+    .onValue(function () {
+      $('article').show()
+    })
+  // Attach filters:
+  filterStream
+    .filter(R.pipe(areResultsEmpty, R.not))
+    .map(R.prop('results'))
+    .map(R.pluck('id'))
+    .onValue(function (ids) {
+      // Parse the list of ids returned by Fuse and show the ones that are
+      // included, while hiding the others:
+      $('article').each(function (_i, el) {
+        ids.indexOf($(el).attr('id')) >= 0 ? $(el).show() : $(el).hide()
+      })
+    })
+
+  // // Show TitleList on search bar focus:
+  $('#searchBar').on('focus', function () {
+    $('#titleList').show()
+  })
+
+  // Capture input as the user types:
+  var inputStream = $('#searchBar').asEventStream('input')
+  inputStream
+    // .debounce(150) Uncomment if you want delay in search
+    .map(R.path(['target', 'value']))
+    .onValue(function (value) {
+      var results = search(fuse.questions, value)
+      addFilter(results, value)
+      $('#titleList').trigger('results', {
         results: results,
         input: value,
+      })
+    })
+
+  // Stream for every category button's clicks:
+  var buttonClickStream = $('#categories').asEventStream('click', 'button', function (ev) {
+    return {
+      target: $(ev.target).attr('data-target'),
+      button: ev.target
+    }
+  })
+  // Toggle button's style on every click:
+  buttonClickStream.onValue(function (data) {
+    toggleStyle('button-active', data.button)
+  })
+
+  // This block combines two streams, representing two events:
+  //    - category buttons clicked
+  //    - user typing in search bar
+  //  Both need to know the active button and perform tasks (mostly triggering
+  //  events) in response.
+  Bacon.update(
+    null,
+    // Handle the change in filter state when the user clicks a category
+    // button:
+    [buttonClickStream, function (state, data) {
+      // If an active button is clicked, clear the filter:
+      if (state === data.button) {
+        clearFilter()
+        return null
       }
-    }));
-    document.querySelector('#titleList').dispatchEvent(new CustomEvent('results', {
-      detail: {
-        results: results,
-        input: value,
-      }
-    }));
-  });
-  // Filters as the user clicks category buttons:
-  categories.map(function (category) {
-    var button = document.createElement('BUTTON');
-    button.innerHTML = category;
-    button.className = BUTTON_CLASS;
-    button.setAttribute('data-target', category);
-    button.addEventListener('click', function (ev) {
-      ev.preventDefault();
-      var value = ev.target.getAttribute('data-target');
-      var isActive = hasClass(ev.target, ACTIVE_CLASS);
-      toggleClass(ev.target, ACTIVE_CLASS + ' ' + INACTIVE_CLASS);
-      nl2array(document.querySelectorAll('.' + ACTIVE_CLASS.replace(/ /g, '.')))
-        .filter(function (element) {return element !== ev.target})
-        .forEach(function (element) {
-          toggleClass(element, ACTIVE_CLASS + ' ' + INACTIVE_CLASS);
-        });
-      document.querySelector('#questions').dispatchEvent(new CustomEvent('filter', {
-        detail: {
-          results: isActive ? [] : fuseData.filter(function (x) {return x.categories.indexOf(value) >= 0}),
-          input: isActive ? '' : value,
-        }
-      }));
-    });
-    var item = document.createElement('LI');
-    item.className = 'dib'
-    item.insertAdjacentElement('beforeend', button);
-    document.querySelector('#categories ul').insertAdjacentElement('beforeend', item);
-  });
+      // Toggle off the old button if a new button has been clicked:
+      toggleStyle('button-active', state)
+      // Attach a new filter, one that only uses categories:
+
+      addFilter(fuseData.filter(R.pipe(
+        R.prop('categories'), // Grab the categories property
+        R.indexOf(data.target), // Grab the array index of data.target
+        R.gte(R.__, 0) // Is it >= 0?
+      )), data.target)
+      return data.button
+    }],
+    [inputStream, R.pipe(
+      toggleStyle('button-active'), // Turn off active class for state
+      clearFilter, // Clear the filter
+      R.always(null) // Always set state to null
+    )]
+  ).onValue(R.identity) // Have to attach a onValue for Bacon to hook this up
 });
