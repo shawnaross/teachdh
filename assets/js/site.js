@@ -96,6 +96,12 @@ document.addEventListener('DOMContentLoaded', function () {
             .forEach(function (element) {
               toggleClass(element, ACTIVE_CLASS);
             });
+          document.querySelector('#questions').dispatchEvent(new CustomEvent('filter', {
+            detail: {
+              results: [],
+              input: ''
+            }
+          }));
           hide(document.querySelector('#titleList'))
           document.querySelector('#' + result.id).scrollIntoView({behavior: 'smooth'});
         });
