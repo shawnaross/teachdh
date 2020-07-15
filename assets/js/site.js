@@ -95,6 +95,10 @@ document.addEventListener('DOMContentLoaded', function () {
         link.innerHTML = result.title;
         link.addEventListener('click', function (ev) {
           ev.preventDefault();
+          nl2array(document.querySelectorAll('.' + ACTIVE_CLASS.replace(/ /g, '.')))
+            .forEach(function (element) {
+              toggleClass(element, ACTIVE_CLASS);
+            });
           hide(document.querySelector('#titleList'))
           document.querySelector('#' + result.id).scrollIntoView({behavior: 'smooth'});
         });
