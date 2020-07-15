@@ -35,7 +35,7 @@ namespace :build do
     # Remove empty asset dirs:
     system 'find _site/ -empty -type d -delete'
   end
-  task all: %i[jekyll ramda compress embed clean]
+  task all: %i[jekyll compress embed clean]
 end
 
 namespace :compress do
