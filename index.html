@@ -5,9 +5,9 @@ layout: teachdh
 <article id="{{ post.title | slugify }}">
   <header>
     <h1>{{ post.title | escape }}</h1>
-    <ul>
+    <ul class="list pa0 ml2 mr0">
       {% for category in post.categories %}
-      <li>{{category}}</li>
+      <li class="f6 dib br-pill ba ph2 pv1 mb1 mr2 black bg-white b--moon-gray">{{category}}</li>
       {% endfor %}
     </ul>
   </header> 
