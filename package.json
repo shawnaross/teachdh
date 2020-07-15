@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/oncomouse/teachdh-test#readme",
   "devDependencies": {
+    "@oncomouse/custom-ramda": "^1.0.1",
     "autoprefixer": "^9.8.0",
     "babel-eslint": "^10.1.0",
     "cssnano": "^4.1.10",

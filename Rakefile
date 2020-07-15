@@ -15,6 +15,13 @@ namespace :build do
   task :jekyll do
     system 'env JEKYLL_ENV=production bundle exec jekyll build'
   end
+  task :ramda do
+    $stdout.print 'Building custom Ramda...'
+    $stdout.flush
+    system 'node _scripts/custom-ramda.js `find _site -name "*.js"` > _site/custom-ramda.js'
+    system 'node _scripts/custom-ramda.js --insert `find _site -name "*.html"`'
+    $stdout.puts 'done'
+  end
   task compress: %i[compress:js compress:html compress:css]
   task :embed do
     $stdout.print 'Packing and embedding assets...'
@@ -28,7 +35,7 @@ namespace :build do
     # Remove empty asset dirs:
     system 'find _site/ -empty -type d -delete'
   end
-  task all: %i[jekyll compress embed clean]
+  task all: %i[jekyll ramda compress embed clean]
 end
 
 namespace :compress do
