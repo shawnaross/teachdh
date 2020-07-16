@@ -16,16 +16,16 @@ namespace :build do
     system 'env JEKYLL_ENV=production bundle exec jekyll build'
   end
   task :ramda do
-    $stdout.print 'Building custom Ramda...'
+    $stdout.print 'Building custom ramda.js...'
     $stdout.flush
     system 'node _scripts/custom-ramda.js `find _site -name "*.js"` > _site/custom-ramda.js'
     system 'node _scripts/custom-ramda.js --insert `find _site -name "*.html"`'
     $stdout.puts 'done'
   end
   task :tachyons do
-    $stdout.print 'Building Custom Tachyons.css...'
+    $stdout.print 'Building custom tachyons.css...'
     $stdout.flush
-    system 'npx --no-install @oncomouse/extract-tachyons `find _site -name "*.html"` --always "white,bg-dark-blue,black,bg-white,hover-bg-moon-gray,f6,grow,no-underline,br-pill,ba,ph3,pv2,mb2,mr2,black,bg-white,b--black,hover-bg-moon-gray,pointer,mw7,center,db,pl0,mv1,dib" --compress --output _site/custom-tachyons.css'
+    system 'node _scripts/custom-tachyons.js `find _site -name "*.js"`'
     system 'node _scripts/insert-tachyons.js `find _site -name "*.html"`'
     $stdout.puts 'done'
   end
