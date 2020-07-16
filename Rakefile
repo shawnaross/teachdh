@@ -22,6 +22,13 @@ namespace :build do
     system 'node _scripts/custom-ramda.js --insert `find _site -name "*.html"`'
     $stdout.puts 'done'
   end
+  task :tachyons do
+    $stdout.print 'Building Custom Tachyons.css...'
+    $stdout.flush
+    system 'npx --no-install @oncomouse/extract-tachyons `find _site -name "*.html"` --always "white,bg-dark-blue,black,bg-white,hover-bg-moon-gray,f6,grow,no-underline,br-pill,ba,ph3,pv2,mb2,mr2,black,bg-white,b--black,hover-bg-moon-gray,pointer,mw7,center,db,pl0,mv1,dib" --compress --output _site/custom-tachyons.css'
+    system 'node _scripts/insert-tachyons.js `find _site -name "*.html"`'
+    $stdout.puts 'done'
+  end
   task compress: %i[compress:js compress:html compress:css]
   task :embed do
     $stdout.print 'Packing and embedding assets...'
@@ -35,7 +42,7 @@ namespace :build do
     # Remove empty asset dirs:
     system 'find _site/ -empty -type d -delete'
   end
-  task all: %i[jekyll ramda compress embed clean]
+  task all: %i[jekyll ramda tachyons compress embed clean]
 end
 
 namespace :compress do
