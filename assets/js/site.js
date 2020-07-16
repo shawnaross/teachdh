@@ -180,6 +180,28 @@ $(function () {
     $('#titleList').show()
   })
 
+  // Show and hide contents of tray:
+  var MAGIC_TRAY_OFFSET = -23
+  $('#tray')
+    .css('bottom', MAGIC_TRAY_OFFSET)
+    .css('margin-top', MAGIC_TRAY_OFFSET)
+  Bacon.update(
+    true,
+    [$('#tray').asEventStream('click', R.prop('target')), function (state, target) {
+      console.log(state, target)
+      $('#controls div').not('#tray')[state ? 'hide' : 'show']()
+      $('#controls')
+        .toggleClass('pv1')
+        .css('height', state ? '0' : 'auto')
+      $(target)
+        .html(state ? '&#9660;' : '&#9650;')
+        .css('bottom', state ? 0 : MAGIC_TRAY_OFFSET)
+        .css('margin-top', state ? 0 : MAGIC_TRAY_OFFSET)
+      return !state
+    }]
+  ).onValue(R.identity)
+
+
   // Capture input as the user types:
   var inputStream = $('#searchBar').asEventStream('input')
   inputStream
