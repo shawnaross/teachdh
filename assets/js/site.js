@@ -183,7 +183,7 @@ $(function () {
   // Capture input as the user types:
   var inputStream = $('#searchBar').asEventStream('input')
   inputStream
-    // .debounce(150) Uncomment if you want delay in search
+    .debounce(150) // Uncomment if you want delay in search
     .map(R.path(['target', 'value']))
     .onValue(function (value) {
       var results = search(fuse.questions, value)
