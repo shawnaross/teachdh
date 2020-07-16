@@ -11,12 +11,12 @@ const tachyonsAST = postcss.parse(tachyonsCSS)
 // Extract a list of all classes in Tachyons:
 const tachyonsAllClasses = []
 tachyonsAST.walkRules(/^\./, (rule) => {
-  const outRule = rule.selector.replace(/\s+$/, '').replace(/^\./, '')
+  const outRule = rule.selector.replace(/\s+$/, '').replace(/^\./, '').replace(/:.*$/, '')
   if (tachyonsAllClasses.indexOf(outRule) === -1) {
     tachyonsAllClasses.push(outRule)
   }
 })
-const tachyonsRegex = new RegExp(`["' ](${tachyonsAllClasses.join('|')})["' ]`, 'gm')
+const tachyonsRegex = new RegExp(`["' ](${tachyonsAllClasses.sort((a, b) => b.length - a.length).join('|')})`, 'gm')
 const tachyonsClasses = Array.from(files.reduce((classes, file) => {
   const fileSrc = fs.readFileSync(file).toString()
   const matches = fileSrc.match(tachyonsRegex)
