@@ -25,8 +25,8 @@ namespace :build do
   task :tachyons do
     $stdout.print 'Building custom tachyons.css...'
     $stdout.flush
-    system 'node _scripts/custom-tachyons.js `find _site -name "*.js"`'
-    system 'node _scripts/insert-tachyons.js `find _site -name "*.html"`'
+    system 'node _scripts/custom-tachyons.js `find _site -name "*.js"` > _site/custom-tachyons.css'
+    system 'node _scripts/custom-tachyons.js --insert `find _site -name "*.html"`'
     $stdout.puts 'done'
   end
   task compress: %i[compress:js compress:html compress:css]
