@@ -16,6 +16,8 @@ The main styles for the page are located in `assets/css/site.scss`. This is [Sas
 
 The layout for the site is located in `_layouts/teachdh.html`. The `{{ content }}` tag will be replaced with the questions. Jekyll will process [Liquid](https://jekyllrb.com/docs/liquid/) tags in this file.
 
+The site is currently configured to use [Tachyons](http://tachyons.io/) for CSS. It is a functional CSS framework that is very simple to work with.
+
 ## Adding Questions
 
 We use Jekyll's [blogging features](https://jekyllrb.com/docs/posts/) to handle questions. To create a post, add a new Markdown file (`.md` extension) or HTML file (`.html` extension) to the `_posts/` directory. The file must be named in the following form:
