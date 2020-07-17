@@ -186,6 +186,65 @@ $(function () {
     $('#titleList').show()
   })
 
+  // Capture input as the user types:
+  var inputStream = $('#searchBar').asEventStream('input')
+  inputStream
+    .debounce(150) // Uncomment if you want delay in search
+    .map(R.path(['target', 'value']))
+    .onValue(function (value) {
+      var results = search(fuse.questions, value)
+      addFilter(results, value)
+      $('#titleList').trigger('results', {
+        results: results,
+        input: value,
+      })
+    })
+
+  // Stream for every category button's clicks:
+  var buttonClickStream = $('#categories').asEventStream('click', 'button', function (ev) {
+    return {
+      target: $(ev.target).attr('data-target'),
+      button: ev.target
+    }
+  })
+  // Toggle button's style on every click:
+  buttonClickStream.onValue(function (data) {
+    toggleStyle('button-active', data.button)
+  })
+
+  // This block combines two streams, representing two events:
+  //    - category buttons clicked
+  //    - user typing in search bar
+  //  Both need to know the active button and perform tasks (mostly triggering
+  //  events) in response.
+  Bacon.update(
+    null,
+    // Handle the change in filter state when the user clicks a category
+    // button:
+    [buttonClickStream, function (state, data) {
+      // If an active button is clicked, clear the filter:
+      if (state === data.button) {
+        clearFilter()
+        return null
+      }
+      // Toggle off the old button if a new button has been clicked:
+      toggleStyle('button-active', state)
+      // Attach a new filter, one that only uses categories:
+
+      addFilter(fuseData.filter(R.pipe(
+        R.prop('categories'), // Grab the categories property
+        R.indexOf(data.target), // Grab the array index of data.target
+        R.gte(R.__, 0) // Is it >= 0?
+      )), data.target)
+      return data.button
+    }],
+    [inputStream, R.pipe(
+      toggleStyle('button-active'), // Turn off active class for state
+      clearFilter, // Clear the filter
+      R.always(null) // Always set state to null
+    )]
+  ).onValue(R.identity) // Have to attach a onValue for Bacon to hook this up
+
   // The next few streams control closing and opening the tray:
   // This fixes some spacing issues:
   var MAGIC_TRAY_OFFSET = -23
@@ -261,63 +320,4 @@ $(function () {
       return isStuck
     }])
   stickyMenuStream.onValue(R.identity)
-
-  // Capture input as the user types:
-  var inputStream = $('#searchBar').asEventStream('input')
-  inputStream
-    .debounce(150) // Uncomment if you want delay in search
-    .map(R.path(['target', 'value']))
-    .onValue(function (value) {
-      var results = search(fuse.questions, value)
-      addFilter(results, value)
-      $('#titleList').trigger('results', {
-        results: results,
-        input: value,
-      })
-    })
-
-  // Stream for every category button's clicks:
-  var buttonClickStream = $('#categories').asEventStream('click', 'button', function (ev) {
-    return {
-      target: $(ev.target).attr('data-target'),
-      button: ev.target
-    }
-  })
-  // Toggle button's style on every click:
-  buttonClickStream.onValue(function (data) {
-    toggleStyle('button-active', data.button)
-  })
-
-  // This block combines two streams, representing two events:
-  //    - category buttons clicked
-  //    - user typing in search bar
-  //  Both need to know the active button and perform tasks (mostly triggering
-  //  events) in response.
-  Bacon.update(
-    null,
-    // Handle the change in filter state when the user clicks a category
-    // button:
-    [buttonClickStream, function (state, data) {
-      // If an active button is clicked, clear the filter:
-      if (state === data.button) {
-        clearFilter()
-        return null
-      }
-      // Toggle off the old button if a new button has been clicked:
-      toggleStyle('button-active', state)
-      // Attach a new filter, one that only uses categories:
-
-      addFilter(fuseData.filter(R.pipe(
-        R.prop('categories'), // Grab the categories property
-        R.indexOf(data.target), // Grab the array index of data.target
-        R.gte(R.__, 0) // Is it >= 0?
-      )), data.target)
-      return data.button
-    }],
-    [inputStream, R.pipe(
-      toggleStyle('button-active'), // Turn off active class for state
-      clearFilter, // Clear the filter
-      R.always(null) // Always set state to null
-    )]
-  ).onValue(R.identity) // Have to attach a onValue for Bacon to hook this up
 });
