@@ -23,7 +23,7 @@
   <section class="lh-copy mw7 mb4 center">
     {% include intro.html %}
   </section>
-  <div id="controls" class="bg-white pv1 bb b--black-20" style="top: 0; position: sticky;">
+  <div id="controls" class="bg-white pv1 " style="top: 0; position: sticky;">
     <div id="categories" class="tc mw9 center">
       <h2 class="f6 b db mb2">Filter By Category</h2>
       <ul class="list mv0 ph0"></ul>
@@ -36,7 +36,9 @@
       </small>
     </div>
     <div id="titleList"></div>
-    <div id="tray" class="pointer relative center bg-white black-20 bt-0 ba b--black-20 mw3 tc">&#9650;</div>
+    <div id="tray" class="dn" aria-labelledby="tray-label">
+      <span class="content">&#9650;</span><span class="bg-black-70 white tooltip__text tooltip__text--bottom b--black-70" id="tray-label">Click to hide menu</span>
+    </div>
   </div>
   <section id="questions" class="w-100 mw7 center">
     {{ content }}

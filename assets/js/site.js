@@ -15,11 +15,13 @@ $(function () {
   var SCROLL_OFFSET = -1 * $('#controls').outerHeight(true)
 
   // Class definitions:
-  var ACTIVE_CLASS = 'white bg-dark-blue black bg-white hover-bg-moon-gray';
-  var BUTTON_CLASS = 'f6 grow no-underline br-pill ba ph3 pv2 mb2 mr2 black bg-white b--black hover-bg-moon-gray pointer';
-  var TITLE_LIST_CLASS = 'mw7 center db pl0';
-  var TITLE_LIST_ITEM_CLASS = 'mv1';
-  var CATEGORY_LIST_ITEM_CLASS = 'dib';
+  var ACTIVE_CLASS = 'white bg-dark-blue black bg-white hover-bg-moon-gray'
+  var BUTTON_CLASS = 'f6 grow no-underline br-pill ba ph3 pv2 mb2 mr2 black bg-white b--black hover-bg-moon-gray pointer'
+  var TITLE_LIST_CLASS = 'mw7 center db pl0'
+  var TITLE_LIST_ITEM_CLASS = 'mv1'
+  var CATEGORY_LIST_ITEM_CLASS = 'dib'
+  var CONTROLS_TRAY_VISIBLE_CLASS = 'bb b--black-20'
+  var TRAY_VISIBLE_CLASS = 'pointer tooltip relative center bg-white black-20 bt-0 ba b--black-20 mw3 tc db dn'
 
   // Toggle styles based on Tachyons. Can be rewritten for a different style
   // system:
@@ -35,6 +37,10 @@ $(function () {
         return $(target).toggleClass(TITLE_LIST_ITEM_CLASS)
       case 'category-list-item':
         return $(target).toggleClass(CATEGORY_LIST_ITEM_CLASS)
+      case 'controls-tray-visible':
+        return $(target).toggleClass(CONTROLS_TRAY_VISIBLE_CLASS)
+      case 'tray-visible':
+        return $(target).toggleClass(TRAY_VISIBLE_CLASS)
       default:
         return $(target)
     }
@@ -187,20 +193,34 @@ $(function () {
     .css('margin-top', MAGIC_TRAY_OFFSET)
   Bacon.update(
     true,
-    [$('#tray').asEventStream('click', R.prop('target')), function (state, target) {
-      console.log(state, target)
+    [$('#tray').asEventStream('click', R.prop('target')), function (state) {
       $('#controls div').not('#tray')[state ? 'hide' : 'show']()
       $('#controls')
         .toggleClass('pv1')
         .css('height', state ? '0' : 'auto')
-      $(target)
-        .html(state ? '&#9660;' : '&#9650;')
+      $('#tray')
         .css('bottom', state ? 0 : MAGIC_TRAY_OFFSET)
         .css('margin-top', state ? 0 : MAGIC_TRAY_OFFSET)
+      $('#tray .content')
+        .html(state ? '&#9660;' : '&#9650;')
+      $('#tray .tooltip__text')
+        .html(state ? 'Click to open menu' : 'Click to close menu')
       return !state
     }]
   ).onValue(R.identity)
-
+  // Only attach tray when the menu is scrolling with content:
+  var scrollStream = $(window).asEventStream('scroll', function () {return window.scrollY})
+  Bacon.update(
+    false,
+    [scrollStream, function (state, top) {
+      if ((!state && top === $('#controls').offset().top) ||
+        (state && top < $('#controls').offset().top)) {
+        toggleStyle('tray-visible', $('#tray'))
+        toggleStyle('controls-tray-visible', $('#controls'))
+        return !state
+      }
+      return state
+    }]).onValue(R.identity)
 
   // Capture input as the user types:
   var inputStream = $('#searchBar').asEventStream('input')
