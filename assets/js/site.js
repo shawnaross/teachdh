@@ -186,41 +186,82 @@ $(function () {
     $('#titleList').show()
   })
 
-  // Show and hide contents of tray:
+  // The next few streams control closing and opening the tray:
+  // This fixes some spacing issues:
   var MAGIC_TRAY_OFFSET = -23
   $('#tray')
     .css('bottom', MAGIC_TRAY_OFFSET)
     .css('margin-top', MAGIC_TRAY_OFFSET)
-  Bacon.update(
+  // Handle clicking on  the tray button and how we style opening and closing:
+  var trayStatus = Bacon.update(
     true,
-    [$('#tray').asEventStream('click', R.prop('target')), function (state) {
-      $('#controls div').not('#tray')[state ? 'hide' : 'show']()
+    [$('#tray').asEventStream('click'), function (isTrayOpen) {
+      $('#controls div').not('#tray')[isTrayOpen ? 'hide' : 'show']()
       $('#controls')
         .toggleClass('pv1')
-        .css('height', state ? '0' : 'auto')
+        .css('height', isTrayOpen ? '0' : 'auto')
       $('#tray')
-        .css('bottom', state ? 0 : MAGIC_TRAY_OFFSET)
-        .css('margin-top', state ? 0 : MAGIC_TRAY_OFFSET)
+        .css('bottom', isTrayOpen ? 0 : MAGIC_TRAY_OFFSET)
+        .css('margin-top', isTrayOpen ? 0 : MAGIC_TRAY_OFFSET)
       $('#tray .content')
-        .html(state ? '&#9660;' : '&#9650;')
+        .html(isTrayOpen ? '&#9660;' : '&#9650;')
       $('#tray .tooltip__text')
-        .html(state ? 'Click to open menu' : 'Click to close menu')
-      return !state
+        .html(isTrayOpen ? 'Click to open menu' : 'Click to close menu')
+      return !isTrayOpen
     }]
-  ).onValue(R.identity)
-  // Only attach tray when the menu is scrolling with content:
-  // var scrollStream = $(window).asEventStream('scroll', function () {return window.scrollY})
-  // Bacon.update(
-  //   false,
-  //   [scrollStream, function (state, top) {
-  //     if ((!state && top === $('#controls').offset().top) ||
-  //       (state && top < $('#controls').offset().top)) {
-  //       toggleStyle('tray-visible', $('#tray'))
-  //       toggleStyle('controls-tray-visible', $('#controls'))
-  //       return !state
-  //     }
-  //     return state
-  //   }]).onValue(R.identity)
+  )
+  trayStatus.onValue(R.identity)
+  // Toggle sticky tray CSS classes:
+  var showHideTray = function (shouldClick) {
+    window.requestAnimationFrame(function () {
+      toggleStyle('tray-visible', $('#tray'))
+      toggleStyle('controls-tray-visible', $('#controls'))
+      if (shouldClick) {
+        $('#tray').trigger('click')
+      }
+    })
+  }
+  // Stream capturing scroll events:
+  var scrollStream = $(window).asEventStream('scroll', function () {return window.pageYOffset})
+  // How tall is #controls when open:
+  var controlHeight = Bacon.constant($('#controls').outerHeight())
+  // Controls showing and hiding CSS for when the menu is "stuck":
+  var stickyMenuStream = Bacon.update(
+    false,
+    [scrollStream, controlHeight, trayStatus, function (isStuck, top, height, isTrayOpen) {
+      var controlTop = $('#controls')[0].getBoundingClientRect().top
+      // If object is not stuck but is at the top of the browser window, attach
+      // sticky styles and set isStuck to true:
+      if ((!isStuck && controlTop === 0)) {
+        showHideTray()
+        return true
+      }
+      // If object is stuck but is no longer at the top of the browser window:
+      if ((isStuck && controlTop > 0)) {
+        // If the tray is closed:
+        if (!isTrayOpen) {
+          // And if top is less than the expanded height, keep the tray stuck and
+          // at the top of the browser window:
+          if (top <= height) {
+            window.requestAnimationFrame(function () {
+              $('#tray').css('margin-top', -1 * (top - height))
+              $('#questions').css('margin-top', top - height)
+            })
+            return true
+
+          } else { // Otherwise, open the tray and unstick the controls:
+            showHideTray(true)
+            return false
+          }
+        }
+        // If tray is open, unstick it:
+        showHideTray()
+        return false
+      }
+      // Otherwise, keep doing what you're doing:
+      return isStuck
+    }])
+  stickyMenuStream.onValue(R.identity)
 
   // Capture input as the user types:
   var inputStream = $('#searchBar').asEventStream('input')
