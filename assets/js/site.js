@@ -191,7 +191,7 @@ $(function () {
   $('#tray')
     .css('bottom', MAGIC_TRAY_OFFSET)
     .css('margin-top', MAGIC_TRAY_OFFSET)
-  Bacon.update(
+  var trayStatus = Bacon.update(
     true,
     [$('#tray').asEventStream('click', R.prop('target')), function (state) {
       $('#controls div').not('#tray')[state ? 'hide' : 'show']()
@@ -207,17 +207,30 @@ $(function () {
         .html(state ? 'Click to open menu' : 'Click to close menu')
       return !state
     }]
-  ).onValue(R.identity)
+  )
+  trayStatus.onValue(R.identity)
   // Only attach tray when the menu is scrolling with content:
-  var scrollStream = $(window).asEventStream('scroll', function () {return window.scrollY})
+  var scrollStream = $(window).asEventStream('scroll', function () {return window.pageYOffset})
+  var showHideTray = function (shouldClick) {
+    window.requestAnimationFrame(function () {
+      toggleStyle('tray-visible', $('#tray'))
+      toggleStyle('controls-tray-visible', $('#controls'))
+    })
+  }
   Bacon.update(
     false,
-    [scrollStream, function (state, top) {
-      if ((!state && top === $('#controls').offset().top) ||
-        (state && top < $('#controls').offset().top)) {
-        toggleStyle('tray-visible', $('#tray'))
-        toggleStyle('controls-tray-visible', $('#controls'))
-        return !state
+    [scrollStream, trayStatus, function (state, top, trayOpen) {
+      var controlTop = $('#controls')[0].getBoundingClientRect().top
+      if ((!state && controlTop === 0)) {
+        showHideTray()
+        return top
+      }
+      if ((state && controlTop > 0)) {
+        showHideTray()
+        if (!trayOpen && top !== $('#controls').offset().top - controlTop) {
+          $('#tray').trigger('click')
+        }
+        return false
       }
       return state
     }]).onValue(R.identity)
