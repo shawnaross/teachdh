@@ -21,7 +21,7 @@ $(function () {
   var TITLE_LIST_ITEM_CLASS = 'mv1'
   var CATEGORY_LIST_ITEM_CLASS = 'dib'
   var CONTROLS_TRAY_VISIBLE_CLASS = 'bb b--black-20'
-  var TRAY_VISIBLE_CLASS = 'pointer tooltip relative center bg-white black-20 bt-0 ba b--black-20 mw3 tc db dn'
+  var TRAY_VISIBLE_CLASS = 'pointer tooltip relative center bg-white black-20 bt-0 ba b--black-20 mw3 tc db dn br--bottom br2'
 
   // Toggle styles based on Tachyons. Can be rewritten for a different style
   // system:
