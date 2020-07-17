@@ -238,24 +238,23 @@ $(function () {
       }
       // If object is stuck but is no longer at the top of the browser window:
       if ((isStuck && controlTop > 0)) {
-        // If the tray is closed:
-        if (!isTrayOpen) {
-          // And if top is less than the expanded height, keep the tray stuck and
-          // at the top of the browser window:
-          if (top <= height) {
-            window.requestAnimationFrame(function () {
-              $('#tray').css('margin-top', -1 * (top - height))
-              $('#questions').css('margin-top', top - height)
-            })
-            return true
-
-          } else { // Otherwise, open the tray and unstick the controls:
-            showHideTray(true)
-            return false
-          }
+        if (isTrayOpen) {
+          // If tray is open, unstick it:
+          showHideTray()
+          return false
         }
-        // If tray is open, unstick it:
-        showHideTray()
+        // If the tray is closed and the top position is less than the open
+        // tray height, we keep the tray closed and pad space until its
+        // possible to open the tray on screen.
+        if (top <= height) {
+          window.requestAnimationFrame(function () {
+            $('#tray').css('margin-top', -1 * (top - height))
+            $('#questions').css('margin-top', top - height)
+          })
+          return true
+        }
+        // There is enough space on screen to open the tray and unstick it:
+        showHideTray(true)
         return false
       }
       // Otherwise, keep doing what you're doing:
