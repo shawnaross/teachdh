@@ -209,18 +209,18 @@ $(function () {
     }]
   ).onValue(R.identity)
   // Only attach tray when the menu is scrolling with content:
-  var scrollStream = $(window).asEventStream('scroll', function () {return window.scrollY})
-  Bacon.update(
-    false,
-    [scrollStream, function (state, top) {
-      if ((!state && top === $('#controls').offset().top) ||
-        (state && top < $('#controls').offset().top)) {
-        toggleStyle('tray-visible', $('#tray'))
-        toggleStyle('controls-tray-visible', $('#controls'))
-        return !state
-      }
-      return state
-    }]).onValue(R.identity)
+  // var scrollStream = $(window).asEventStream('scroll', function () {return window.scrollY})
+  // Bacon.update(
+  //   false,
+  //   [scrollStream, function (state, top) {
+  //     if ((!state && top === $('#controls').offset().top) ||
+  //       (state && top < $('#controls').offset().top)) {
+  //       toggleStyle('tray-visible', $('#tray'))
+  //       toggleStyle('controls-tray-visible', $('#controls'))
+  //       return !state
+  //     }
+  //     return state
+  //   }]).onValue(R.identity)
 
   // Capture input as the user types:
   var inputStream = $('#searchBar').asEventStream('input')
