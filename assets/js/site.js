@@ -1,4 +1,6 @@
 /* globals Fuse, Bacon, Stickyfill, R, $ */
+// Attach Bacon methods to $
+Bacon.$.init($)
 $(function () {
   $.fn.scrollTo = function (offset) {
     offset = offset || 0;
@@ -7,8 +9,6 @@ $(function () {
       behavior: 'smooth'
     });
   }
-  // Attach Bacon methods to $
-  Bacon.$.init($)
   // Load Stickyfill. Remove this if there are no sticky elements:
   Stickyfill.add($('#controls'));
   // Scroll Offset for questions. This can be set to 0 if there are no stick controls:
@@ -252,9 +252,19 @@ $(function () {
     .css('bottom', MAGIC_TRAY_OFFSET)
     .css('margin-top', MAGIC_TRAY_OFFSET)
   // Handle clicking on  the tray button and how we style opening and closing:
-  var trayStatus = Bacon.update(
+  var trayClickStream = $('#tray').asEventStream('click', function (_ev, data) {
+    return typeof data === 'undefined' || data
+  })
+  // Set a timer when the user (as opposed to the program) clicks on the tray 
+  // button. This lets the software close the tray when, according to the 
+  // scroll event handler below, it shouldn't be able to close.
+  var humanClickProperty = trayClickStream.flatMapLatest(function (isHumanClick) {
+    return !isHumanClick ? Bacon.constant(false) : Bacon.once(true).merge(Bacon.later(500, false))
+  }).toProperty(false)
+  // Property that tracks whether the tray is open or closed:
+  var trayOpenStatusProperty = Bacon.update(
     true,
-    [$('#tray').asEventStream('click'), function (isTrayOpen) {
+    [trayClickStream, function (isTrayOpen) {
       $('#controls div').not('#tray')[isTrayOpen ? 'hide' : 'show']()
       $('#controls')
         .toggleClass('pv1')
@@ -269,12 +279,13 @@ $(function () {
       return !isTrayOpen
     }]
   )
-  trayStatus.onValue(R.identity)
+  trayOpenStatusProperty.onValue(R.identity)
   // Toggle sticky tray CSS classes:
   var showHideTray = function (shouldClick) {
     window.requestAnimationFrame(function () {
       toggleStyle('tray-visible', $('#tray'))
       toggleStyle('controls-tray-visible', $('#controls'))
+      $('#questions').css('margin-top', 0)
       if (shouldClick) {
         $('#tray').trigger('click')
       }
@@ -283,41 +294,53 @@ $(function () {
   // Stream capturing scroll events:
   var scrollStream = $(window).asEventStream('scroll', function () {return window.pageYOffset})
   // How tall is #controls when open:
-  var controlHeight = Bacon.constant($('#controls').outerHeight())
+  var controlHeightProperty = Bacon.constant($('#controls').outerHeight())
   // Controls showing and hiding CSS for when the menu is "stuck":
   var stickyMenuStream = Bacon.update(
     false,
-    [scrollStream, controlHeight, trayStatus, function (isStuck, top, height, isTrayOpen) {
-      var controlTop = $('#controls')[0].getBoundingClientRect().top
-      // If object is not stuck but is at the top of the browser window, attach
-      // sticky styles and set isStuck to true:
-      if ((!isStuck && controlTop === 0)) {
-        showHideTray()
-        return true
-      }
-      // If object is stuck but is no longer at the top of the browser window:
-      if ((isStuck && controlTop > 0)) {
-        if (isTrayOpen) {
-          // If tray is open, unstick it:
+    [
+      scrollStream,
+      controlHeightProperty,
+      trayOpenStatusProperty,
+      humanClickProperty,
+      function (isStuck, top, height, isTrayOpen, isHumanClick) {
+        var controlTop = $('#controls')[0].getBoundingClientRect().top
+        // If object is not stuck but is at the top of the browser window, attach
+        // sticky styles and set isStuck to true:
+        if ((!isStuck && controlTop === 0)) {
           showHideTray()
-          return false
-        }
-        // If the tray is closed and the top position is less than the open
-        // tray height, we keep the tray closed and pad space until its
-        // possible to open the tray on screen.
-        if (top <= height) {
-          window.requestAnimationFrame(function () {
-            $('#tray').css('margin-top', -1 * (top - height))
-            $('#questions').css('margin-top', top - height)
-          })
           return true
         }
-        // There is enough space on screen to open the tray and unstick it:
-        showHideTray(true)
-        return false
-      }
-      // Otherwise, keep doing what you're doing:
-      return isStuck
-    }])
+        // If object is stuck but is no longer at the top of the browser window:
+        if ((isStuck && controlTop > 0)) {
+          if (isTrayOpen) {
+            // If tray is open, unstick it:
+            showHideTray()
+            return false
+          }
+          // If the tray is closed and the top position is less than the open
+          // tray height, we keep the tray closed and pad space until its
+          // possible to open the tray on screen.
+          if (top <= height) {
+            window.requestAnimationFrame(function () {
+              $('#tray').css('margin-top', -1 * (top - height))
+              $('#questions').css('margin-top', top - height)
+            })
+            return true
+          }
+          // There is enough space on screen to open the tray and unstick it:
+          if (isHumanClick) {
+            window.requestAnimationFrame(function () {
+              $('#tray').css('margin-top', (-1 * height))
+              $('#questions').css('margin-top', height)
+            })
+            return true
+          }
+          showHideTray(true)
+          return false
+        }
+        // Otherwise, keep doing what you're doing:
+        return isStuck
+      }])
   stickyMenuStream.onValue(R.identity)
 });
