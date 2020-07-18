@@ -251,13 +251,20 @@ $(function () {
   $('#tray')
     .css('bottom', MAGIC_TRAY_OFFSET)
     .css('margin-top', MAGIC_TRAY_OFFSET)
-  // Handle clicking on  the tray button and how we style opening and closing:
+  // Handle clicking on  the tray button and how we style opening and closing.
+  // We set data to false when the program is triggering a tray close and it
+  // is undefined when the user clicks. This lets us set the stream's value
+  // to whether the user clicked on the button or the program triggered the
+  // click.
+  //
+  // This matters because it helps smash a bug where the scrolling stream
+  // conflicts with the clicking stream.
   var trayClickStream = $('#tray').asEventStream('click', function (_ev, data) {
     return typeof data === 'undefined' || data
   })
   // Set a timer when the user (as opposed to the program) clicks on the tray 
-  // button. This lets the software close the tray when, according to the 
-  // scroll event handler below, it shouldn't be able to close.
+  // button. This prevents the software from manipulating the tray status when
+  // the user has explicitly (by clicking) expressed how the tray should behave
   var humanClickProperty = trayClickStream.flatMapLatest(function (isHumanClick) {
     return !isHumanClick ? Bacon.constant(false) : Bacon.once(true).merge(Bacon.later(500, false))
   }).toProperty(false)
