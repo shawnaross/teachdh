@@ -41,6 +41,10 @@ This is the answer to the above question.
 
 It is a question!
 ~~~
+In the above example, two categories are defined: `FAQ` and `Chapter 1`. The site will generate the overall list of categories based on each question's, so you may add as many categories as you wish.
+
+`categories`, above, is an example of a [YAML sequence](https://www.tutorialspoint.com/yaml/yaml_sequence_styles.htm). Each entry in the sequence is on a new line, indented and prepended with a `-`.
+
 
 ## Testing the Site
 
