@@ -17,6 +17,7 @@ $(function () {
   // Class definitions:
   var ACTIVE_CLASS = 'white bg-dark-blue black bg-white hover-bg-moon-gray'
   var BUTTON_CLASS = 'f6 grow no-underline br-pill ba ph3 pv2 mb2 mr2 black bg-white b--black hover-bg-moon-gray pointer'
+  var CATEGORY_ACTIVE_CLASS = ACTIVE_CLASS + 'b--moon-gray b--dark-blue'
   var TITLE_LIST_CLASS = 'mw7 center db pl0'
   var TITLE_LIST_ITEM_CLASS = 'mv1'
   var CATEGORY_LIST_ITEM_CLASS = 'dib'
@@ -32,7 +33,7 @@ $(function () {
       case 'button-active':
         return $(target).toggleClass(ACTIVE_CLASS)
       case 'category-active':
-        return $(target).toggleClass(ACTIVE_CLASS)
+        return $(target).toggleClass(CATEGORY_ACTIVE_CLASS)
       case 'title-list':
         return $(target).toggleClass(TITLE_LIST_CLASS)
       case 'title-list-item':

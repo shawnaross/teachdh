@@ -5,11 +5,14 @@ layout: teachdh
 <article id="{{ post.title | slugify }}">
   <header>
     <h1>{{ post.title | escape }}</h1>
-    <ul class="list pa0 ml2 mr0">
-      {% for category in post.categories %}
-      <li class="f6 dib br-pill ba ph2 pv1 mb1 mr2 black bg-white b--moon-gray">{{category}}</li>
-      {% endfor %}
-    </ul>
+    <figure class="ma0 ml2">
+      <figcaption class="f7 pb2">Categories That Contain This Post:</figcaption>
+      <ul class="list pa0 ma0">
+        {% for category in post.categories %}
+        <li class="f6 dib br-pill ba ph2 pv1 mb1 mr2 black bg-white b--moon-gray">{{category}}</li>
+        {% endfor %}
+      </ul>
+    </figure>
   </header> 
   <main>
     {{ post.content |markdownify }}
