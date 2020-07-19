@@ -31,6 +31,8 @@ $(function () {
         return $(target).toggleClass(BUTTON_CLASS)
       case 'button-active':
         return $(target).toggleClass(ACTIVE_CLASS)
+      case 'category-active':
+        return $(target).toggleClass(ACTIVE_CLASS)
       case 'title-list':
         return $(target).toggleClass(TITLE_LIST_CLASS)
       case 'title-list-item':
@@ -53,7 +55,13 @@ $(function () {
       id: $(article).attr('id'),
       title: $(article).find('h1').text(),
       content: $(article).find('main').text(),
-      categories: Array.from($(article).find('header li')).map(function (li) {return li.innerText;}),
+      categories: Array.from($(article)
+        .find('header li'))
+        .map(function (li) {
+          var category = $(li).text()
+          $(li).attr('data-category', category)
+          return category
+        }),
     };
   });
 
@@ -207,9 +215,13 @@ $(function () {
       button: ev.target
     }
   })
+  var toggleCategoryStyles = function (category) {
+    toggleStyle('category-active', $('#questions').find('[data-category*="' + category + '"]'))
+  }
   // Toggle button's style on every click:
   buttonClickStream.onValue(function (data) {
     toggleStyle('button-active', data.button)
+    toggleCategoryStyles(data.target)
   })
 
   // This block combines two streams, representing two events:
@@ -231,6 +243,9 @@ $(function () {
       toggleStyle('button-active', state)
       // Attach a new filter, one that only uses categories:
 
+      if (state !== null) {
+        toggleCategoryStyles($(state).attr('data-target'))
+      }
       addFilter(fuseData.filter(R.pipe(
         R.prop('categories'), // Grab the categories property
         R.indexOf(data.target), // Grab the array index of data.target
@@ -239,6 +254,9 @@ $(function () {
       return data.button
     }],
     [inputStream, R.pipe(
+      R.tap(function (state) {
+        toggleCategoryStyles($(state).attr('data-target'))
+      }),
       toggleStyle('button-active'), // Turn off active class for state
       clearFilter, // Clear the filter
       R.always(null) // Always set state to null
