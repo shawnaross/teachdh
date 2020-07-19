@@ -291,7 +291,7 @@ $(function () {
   var trayOpenStatusProperty = Bacon.update(
     true,
     [trayClickStream, function (isTrayOpen) {
-      $('#controls div').not('#tray')[isTrayOpen ? 'hide' : 'show']()
+      $('#controls > *').not('#tray')[isTrayOpen ? 'hide' : 'show']()
       $('#controls')
         .toggleClass('pv1')
         .css('height', isTrayOpen ? '0' : 'auto')
