@@ -285,7 +285,7 @@ $(function () {
   // button. This prevents the software from manipulating the tray status when
   // the user has explicitly (by clicking) expressed how the tray should behave
   var humanClickProperty = trayClickStream.flatMapLatest(function (isHumanClick) {
-    return !isHumanClick ? Bacon.constant(false) : Bacon.once(true).merge(Bacon.later(500, false))
+    return isHumanClick ? Bacon.once(true).merge(Bacon.later(500, false)) : Bacon.constant(false)
   }).toProperty(false)
   // Property that tracks whether the tray is open or closed:
   var trayOpenStatusProperty = Bacon.update(
@@ -354,7 +354,8 @@ $(function () {
             })
             return true
           }
-          // There is enough space on screen to open the tray and unstick it:
+          // If the last attempt to close the tray was user-based, we move the
+          // tray to the top of the screen and set it to stuck.
           if (isHumanClick) {
             window.requestAnimationFrame(function () {
               $('#tray').css('margin-top', (-1 * height))
@@ -362,6 +363,7 @@ $(function () {
             })
             return true
           }
+          // There is enough space on screen to open the tray and unstick it:
           showHideTray(true)
           return false
         }
