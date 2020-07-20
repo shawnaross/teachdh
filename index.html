@@ -3,10 +3,10 @@ layout: teachdh
 ---
 {% for post in site.posts %}
 <article id="{{ post.title | slugify }}">
-  <header>
+  <header class="lh-title">
     <h1>{{ post.title | escape }}</h1>
     <figure class="ma0 ml2">
-      <figcaption class="f7 pb2">Categories That Contain This Post:</figcaption>
+      <figcaption class="f7 pb1">Categories That Contain This Post:</figcaption>
       <ul class="list pa0 ma0">
         {% for category in post.categories %}
         <li class="f6 dib br-pill ba ph2 pv1 mb1 mr2 black bg-white b--moon-gray">{{category}}</li>
@@ -14,7 +14,7 @@ layout: teachdh
       </ul>
     </figure>
   </header> 
-  <main>
+  <main class="lh-copy">
     {{ post.content |markdownify }}
   </main>
 </article>
