@@ -18,17 +18,17 @@
   "homepage": "https://github.com/oncomouse/teachdh-test#readme",
   "devDependencies": {
     "@oncomouse/custom-ramda": "^1.0.1",
-    "@oncomouse/extract-tachyons": "^1.0.5",
-    "autoprefixer": "^9.8.0",
+    "@oncomouse/extract-tachyons": "^1.0.6",
+    "autoprefixer": "^9.8.5",
     "babel-eslint": "^10.1.0",
     "cssnano": "^4.1.10",
-    "eslint": "^7.4.0",
+    "eslint": "^7.5.0",
     "html-minifier": "^4.0.0",
     "js-yaml": "^3.14.0",
-    "jsdom": "^16.2.2",
+    "jsdom": "^16.3.0",
     "lorem-ipsum": "^2.0.3",
     "postcss-cli": "^7.1.1",
-    "uglify-js": "^3.9.4"
+    "uglify-js": "^3.10.0"
   },
   "postcss": {
     "plugins": {
