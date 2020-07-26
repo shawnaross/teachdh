@@ -351,11 +351,8 @@ $(function () {
           // tray height, we keep the tray closed and pad space until its
           // possible to open the tray on screen.
           if (top <= height) {
-            window.requestAnimationFrame(function () {
-              $('#tray').css('margin-top', -1 * (top - height))
-              $('#questions').css('margin-top', top - height)
-            })
-            return true
+            showHideTray(true)
+            return false
           }
           // If the last attempt to close the tray was user-based, we move the
           // tray to the top of the screen and set it to stuck.
