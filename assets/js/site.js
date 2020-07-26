@@ -373,7 +373,7 @@ $(function () {
   stickyMenuStream.onValue(R.identity)
   $('#categories')
     .asEventStream('click', 'figcaption')
-    .scan(false, function(x) { return !x })
+    .scan(true, function(x) { return !x })
     .onValue(function(show) {
       $('#categories ul')[show ? 'show' : 'hide']()
       $('#categories figcaption span').text(show ? '-' : '+')
