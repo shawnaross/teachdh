@@ -266,6 +266,16 @@ $(function () {
       R.always(null) // Always set state to null
     )]
   ).onValue(R.identity) // Have to attach a onValue for Bacon to hook this up
+  // Collapse and expand the categories list
+  var collapseCategoriesStream = $('#categories').asEventStream('click', 'figcaption')
+  collapseCategoriesStream
+    .scan(true, function (x) {return !x })
+    .onValue(function (show) {
+      SCROLL_OFFSET = -1 * $('#controls').outerHeight(true)
+      $('#categories ul')[show ? 'show' : 'hide']()
+      $('#categories figcaption span').text(show ? '-' : '+')
+      $('#categories figcaption').attr('aria-label', 'Click to ' + (show ? 'show' : 'hide') + ' category list')
+    })
 
   // The next few streams control closing and opening the tray:
   // This fixes some spacing issues:
@@ -323,7 +333,12 @@ $(function () {
   // Stream capturing scroll events:
   var scrollStream = $(window).asEventStream('scroll', function () {return window.pageYOffset})
   // How tall is #controls when open:
-  var controlHeightProperty = Bacon.constant($('#controls').outerHeight())
+  var controlHeightProperty = collapseCategoriesStream
+    .scan(
+      $('#controls').outerHeight(), function() {
+        $('#controls').outerHeight()
+      }
+    )
   // Controls showing and hiding CSS for when the menu is "stuck":
   var stickyMenuStream = Bacon.update(
     false,
@@ -371,13 +386,4 @@ $(function () {
         return isStuck
       }])
   stickyMenuStream.onValue(R.identity)
-  $('#categories')
-    .asEventStream('click', 'figcaption')
-    .scan(true, function (x) {return !x})
-    .onValue(function (show) {
-      SCROLL_OFFSET = -1 * $('#controls').outerHeight(true)
-      $('#categories ul')[show ? 'show' : 'hide']()
-      $('#categories figcaption span').text(show ? '-' : '+')
-      $('#categories figcaption').attr('aria-label', 'Click to ' + (show ? 'show' : 'hide') + ' category list')
-    })
 });
