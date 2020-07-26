@@ -81,7 +81,10 @@ $(function () {
       toggleStyle('category-list-item', item)
       item.append(button)
       $('#categories ul').append(item)
-    })
+    }),
+    function () {
+      SCROLL_OFFSET = -1 * $('#controls').outerHeight(true)
+    }
   )(fuseData)
 
   // Create the Fuse object:
@@ -373,10 +376,11 @@ $(function () {
   stickyMenuStream.onValue(R.identity)
   $('#categories')
     .asEventStream('click', 'figcaption')
-    .scan(true, function(x) { return !x })
-    .onValue(function(show) {
+    .scan(true, function (x) {return !x})
+    .onValue(function (show) {
+      SCROLL_OFFSET = -1 * $('#controls').outerHeight(true)
       $('#categories ul')[show ? 'show' : 'hide']()
       $('#categories figcaption span').text(show ? '-' : '+')
-      $('#categories figcaption').attr('aria-label', 'Click to ' + (show ? 'show' : 'hide') +' category list')
+      $('#categories figcaption').attr('aria-label', 'Click to ' + (show ? 'show' : 'hide') + ' category list')
     })
 });
