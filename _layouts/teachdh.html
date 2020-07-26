@@ -25,17 +25,17 @@
     {% include intro.html %}
   </section>
   <div id="controls" class="bg-white pv1 " style="top: 0; position: sticky;">
-    <figure id="categories" class="tc mw9 center ma0">
-      <figcaption><h2 class="f6 b db mb2">Filter By Category</h2></figcaption>
-      <ul class="list mv0 ph0"></ul>
-    </figure>
-    <div class="tc mv3 mw7 w-100 center">
-      <label for="searchBar" class="f6 b db mb2">Search FAQs</label>
+    <div class="tc mw7 w-100 center">
+      <label for="searchBar" class="f6 b db mb2">What Can We Help With?</label>
       <input class="w-90 input-reset ba b--black-20 pa2 mb2" type="text" id="searchBar" value="" aria-describedby="searchBar-desc" />
       <small id="searchBar-desc" class="f6 black-60 db mb2">
         Input a search terms to see related questions and answers.
       </small>
     </div>
+    <figure id="categories" class="tc mv3 mw7 center ma0">
+      <figcaption class="pointer" aria-label="Click to show category list"><h2 class="f6 b db mb2">Filter By Category<span class="normal">+</span></h2></figcaption>
+      <ul class="list mv0 ph0 dn"></ul>
+    </figure>
     <div id="titleList"></div>
     <div id="tray" class="dn" aria-labelledby="tray-label">
       <span class="content">&#9650;</span><span class="bg-black-70 white tooltip__text tooltip__text--bottom b--black-70" id="tray-label">Click to hide menu</span>
