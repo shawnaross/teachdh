@@ -4,7 +4,7 @@ To build a live searchable FAQ as a companion to the second edition of [*Using D
 
 ## Getting Started
 
-To develop this site, you will need Ruby and Bundler installed. Install ruby for your system, as you see fit. Note macOS ships with an out-dated version of Ruby, so you will need to use something like [Homebrew](https://brew.sh/) to install it.
+To develop this site, you will need Ruby and Bundler installed. Install ruby for your system, as you see fit. Note macOS ships with an out-dated version of Ruby, so you will need to use something like [Homebrew](https://brew.sh/) to install it. Run `brew install ruby` after installing Homebrew.
 
 With Ruby installed, run `gem install bundler` to install the software we need to build the site.
 
