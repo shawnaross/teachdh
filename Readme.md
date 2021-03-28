@@ -1,6 +1,6 @@
 # TeachDH Test Site
 
-To build a live searchable FAQ as a companion to the second edition of [*Using Digital Humanities in the Classroom*](https://www.bloomsbury.com/uk/using-digital-humanities-in-the-classroom-9781350029750/), [Jekyll](https://github.com/jekyll/jekyll) and was used.
+To build a live searchable FAQ as a companion to the second edition of [*Using Digital Humanities in the Classroom*](https://www.bloomsbury.com/uk/using-digital-humanities-in-the-classroom-9781350029750/), [Jekyll](https://github.com/jekyll/jekyll) was used.
 
 ## Getting Started
 
