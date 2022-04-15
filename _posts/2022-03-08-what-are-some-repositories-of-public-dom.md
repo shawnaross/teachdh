@@ -1,0 +1,9 @@
+---
+title: What are some repositories of Public Domain images?
+categories:
+  - 'Finding, Creating, and Using Digital Resources'
+  - Teaching in a Digital Classroom
+  - List of Archives
+
+---
+There are many ways of finding Public Domain images, and one easy method that might tweak an existing everyday practice is to filter your Google Image Search by navigating to “More” under the search bar and selecting “Usage Rights.” For most classroom uses “Creative Commons License” can be a good choice. Google Arts and Culture can also be a great source of curated sets and galleries. For aggregated collections, again there are many options, but what follows are some of our go-tos. The British Library has a massive collection of over a million images [on Flickr](https://www.google.com/url?q=https://www.flickr.com/photos/britishlibrary/&sa=D&source=editors&ust=1649984699358139&usg=AOvVaw3wJMXxy11ZeCk6mlfMP9Fd). Flickr itself also runs Flickr Commons, which contains free-to-use images. Stock image companies like [Shutterstock](https://www.google.com/url?q=https://www.shutterstock.com/search/public?kw%3D%252Bpublic%2520%252Bstock%2520%252Bimages%26c3apidt%3Dp36156857218%26gclid%3DCjwKCAjwo8-SBhAlEiwAopc9W2DJvfy1r8SVpUmI3j9fWKz3oIym1H0GnMpGi5t5O1V5sg50X9xN5RoClosQAvD_BwE%26gclsrc%3Daw.ds&sa=D&source=editors&ust=1649984699358465&usg=AOvVaw2ONK5SHbqFVnZss0Bf9pt8) and [Unsplash](https://www.google.com/url?q=https://unsplash.com&sa=D&source=editors&ust=1649984699358675&usg=AOvVaw1xLO19pI8QzkCN4j5ouQdt) have large collections of free-to-use images (and Unsplash can be accessed directly though Microsoft PowerPoint). The [Public Domain Review](https://www.google.com/url?q=https://publicdomainreview.org/sources/&sa=D&source=editors&ust=1649984699358938&usg=AOvVaw1DduXN59v2HZlq6jJPbkDn) is a great source of curated materials and offers listings and aggregations of different institutional repositories.

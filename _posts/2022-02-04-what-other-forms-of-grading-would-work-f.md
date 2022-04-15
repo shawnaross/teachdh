@@ -1,0 +1,12 @@
+---
+title: What other forms of grading would work for DH projects?
+categories:
+  - Evaluating Student Work
+
+---
+Traditional forms of grading often seem unjust, outmoded, or anxiety-producing—and for very good reasons, [as this justification of alternative grading practices explains](https://www.google.com/url?q=https://cte.virginia.edu/blog/2020/12/04/alternative-grading-practices-support-both-equity-and-learning&sa=D&source=editors&ust=1649984699437829&usg=AOvVaw0UlDIOEEJpP0sJb4jq62pD). Below, we list a few different approaches current in DH:
+
+*   Ungrading: for this approach to assessment, which privileges student self-assessments, take a look at this “[Beginner’s Guide to Ungrading](https://www.google.com/url?q=https://www.timeshighereducation.com/campus/so-you-want-take-grades-out-teaching-beginners-guide-ungrading&sa=D&source=editors&ust=1649984699438150&usg=AOvVaw3buzVMBkwv3ruhOng_qXJO)” from Times Higher Education or Jesse Stommel’s “[How to Ungrade](https://www.google.com/url?q=https://www.jessestommel.com/how-to-ungrade/&sa=D&source=editors&ust=1649984699438391&usg=AOvVaw0Xcfks3OZDFsF0G7k65CQN)”
+*   Contract grading: within DH, Cathy Davidson’s [account of contract grading](https://www.google.com/url?q=https://www.hastac.org/blogs/cathy-davidson/2015/08/16/getting-started-6-contract-grading-and-peer-review&sa=D&source=editors&ust=1649984699438690&usg=AOvVaw0KLxyWKaCWky9TD5VppQVY) has been enormously influential
+*   Labor-based contract grading: [Asao B. Inoue’s blog post](https://www.google.com/url?q=https://asaobinoue.blogspot.com/p/labor-based-grading-contract-resources.html&sa=D&source=editors&ust=1649984699438974&usg=AOvVaw3tkI82VfKaSgWlck-q8C08) provides many resources for this social-justice oriented approach to contract grading
+*   Specifications-grading: this approach by Linda Nilson ([link to her book here](https://www.google.com/url?q=https://styluspub.presswarehouse.com/browse/book/9781620362426/Specifications%2520Grading&sa=D&source=editors&ust=1649984699439299&usg=AOvVaw244oABvsgor3cik1nBc4ym); a [shorter article is available](https://www.google.com/url?q=https://www.insidehighered.com/views/2016/01/19/new-ways-grade-more-effectively-essay&sa=D&source=editors&ust=1649984699439504&usg=AOvVaw0lybqtSbLFwQJ7hBVI8DT6) at Inside Higher Ed) reduces assessments to satisfactory/not satisfactory alone but allows graded work to be “bundled” and reassessed over time
