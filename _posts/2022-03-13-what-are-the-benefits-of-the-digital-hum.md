@@ -1,0 +1,7 @@
+---
+title: What are the benefits of the digital humanities?
+categories:
+  - Introduction
+
+---
+While we, like many scholars, appreciate the grant funding and the opportunities to engage in diverse cross-disciplinary scholarly communities that come from “doing DH,” we use DH primarily to enrich our teaching, streamline our scholarly work practices, rethink the divisions between STEM and humanities fields, and provide new ideas for what to do research on and how to do that research. [Duke’s DH Initiative](https://www.google.com/url?q=https://digitalhumanities.duke.edu/benefits-digital-humanities&sa=D&source=editors&ust=1649984699342726&usg=AOvVaw3J6ZtVwxBXthJG96cdhqmK) echoes our position, as do [Sandra Quiroz](https://www.google.com/url?q=https://medium.com/@scquiroz2/importance-of-digital-humanities-4e16f5700dca&sa=D&source=editors&ust=1649984699343023&usg=AOvVaw2YU7OGaDFLtgpgNEswJj9I) and [John Keating](https://www.google.com/url?q=https://dri.ie/sites/default/files/files/john-keating.pdf&sa=D&source=editors&ust=1649984699343325&usg=AOvVaw0K7WniGdi_nBbsz1Het87A), while [Brandon T. Locke](https://www.google.com/url?q=http://www.digitalhumanities.org/dhq/vol/11/3/000303/000303.html&sa=D&source=editors&ust=1649984699343638&usg=AOvVaw0IlQTgz7nP1FCCX_ZyJl-U) explains why these advantages are so important for humanities pedagogy.

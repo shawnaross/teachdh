@@ -1,0 +1,7 @@
+---
+title: How do I create rubrics?
+categories:
+  - Evaluating Student Work
+
+---
+Since the first edition of this book was published, many common Learning Management Systems have incorporated basic rubric builders in their software. Canvas rubrics integrate seamlessly with the SpeedGrader function to save you time and clicks ([see a YouTube tutorial here](https://www.google.com/url?q=https://www.youtube.com/watch?v%3DJaYy_5D3IL8&sa=D&source=editors&ust=1649984699432319&usg=AOvVaw0U9JBtMYKJV_glacVQGIo9)). Blackboard allows you to assign each criterion a point value or a percentage value, or even select a range within either of those options ([tutorial here](https://www.google.com/url?q=https://help.blackboard.com/Learn/Instructor/Ultra/Grade/Rubrics&sa=D&source=editors&ust=1649984699432509&usg=AOvVaw1zlA2An2HVyD_VB1sK4_6u)). If yours doesn’t, or if you don’t like how they work, try the [free rubric-building tool iRubric](https://www.google.com/url?q=https://www.rcampus.com/indexrubric.cfm?&sa=D&source=editors&ust=1649984699432665&usg=AOvVaw1ILShwnGg7ytm5vaeOaJty), a favorite of secondary educators. For a comprehensive understanding of how rubrics are used specifically for grading DH projects, read [Laura Estill’s detailed account](https://www.google.com/url?q=http://www.digitalhumanities.org/dhq/vol/11/3/000320/000320.html&sa=D&source=editors&ust=1649984699433022&usg=AOvVaw3O_TZ52q14pZZk1IpMHbN9) of shepherding students through a Wikipedia-based project at Digital Humanities Quarterly.

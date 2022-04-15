@@ -1,0 +1,8 @@
+---
+title: 'What are multiple intelligences, and how can they help my teaching?'
+categories:
+  - Ensuring Accessibility
+  - Designing Your Syllabus
+
+---
+The concept of “learning styles” is popular with the public and many education professionals. We appreciate [Howard Gardner’s multiple intelligence framework](https://www.google.com/url?q=https://www.google.com/books/edition/Intelligence_Reframed/pU4gAQAAQBAJ?hl%3Den%26gbpv%3D1%26dq%3DIntelligence%2BReframed:%2BMultiple%2BIntelligences%2Bfor%2Bthe%2B21st%2BCentury%26printsec%3Dfrontcover&sa=D&source=editors&ust=1649984699367735&usg=AOvVaw0C83FjyzHZAjuwUioI5MzE), which identifies visual-spatial, bodily-kinesthetic, musical, linguistic-verbal, logical-mathematical, interpersonal, intrapersonal, and naturalistic intelligences. Being aware that every learner tends to prefer learning through only one or two of these intelligences, but would benefit from being encouraged to develop others and collaborate with peers who prefer flexing other intelligences, will help you diversify the types of activities and assignments you craft and ensure that students both excel in their comfort zones and experiment with less-familiar modes of learning. For external analyses of Gardner’s framework, read ["The Scientific Status of Learning Styles Theories"](https://www.google.com/url?q=https://journals.sagepub.com/doi/10.1177/0098628315589505&sa=D&source=editors&ust=1649984699368017&usg=AOvVaw2oSpAJKky_0Rhzt3es3n_a)or ["Multiple Intelligences: What Does the Research Say?"](https://www.google.com/url?q=https://www.edutopia.org/multiple-intelligences-research&sa=D&source=editors&ust=1649984699368227&usg=AOvVaw22TVTLVQxAfE11VgvXwRa3)

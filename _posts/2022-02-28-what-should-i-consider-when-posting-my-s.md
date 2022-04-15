@@ -1,0 +1,9 @@
+---
+title: >-
+  What should I consider when posting my syllabus online and/or citing syllabus
+  materials created by others?
+categories:
+  - Designing Your Syllabus
+
+---
+The University of Illinois’ Center for Innovation in Teaching and Learning offers [some tips about posting syllabi online](https://www.google.com/url?q=http://citl.illinois.edu/teaching-resources/teaching-with-technology/putting-class-materials-online&sa=D&source=editors&ust=1649984699388201&usg=AOvVaw2Rs9de05TvYeis2oxgcJm-). If you are skeptical about sharing this work, Timothy Burke has written [a fascinating post](https://www.google.com/url?q=https://blogs.swarthmore.edu/burke/blog/2009/08/08/putting-syllabi-online/&sa=D&source=editors&ust=1649984699388443&usg=AOvVaw2dn-Nctx2Ag6nuCdUtCeWY) that tries to allay various fears about putting your work online. One simple way is to participate in the [Open Syllabus Project](https://www.google.com/url?q=http://opensyllabusproject.org/&sa=D&source=editors&ust=1649984699388620&usg=AOvVaw0MkAd7b5sLK4QYF_RS4RzK), which will host your syllabus for you (so long as you agree to share it with others). This is, of course, also a great source for ideas for your own syllabi. And as you do so, building on others’ ideas, bear in mind that you may want to cite others’ syllabi, just as you would their research. (ProfHacker has [a great post discussing citing syllabi](https://www.google.com/url?q=http://chronicle.com/blogs/profhacker/citing-syllabi/57893&sa=D&source=editors&ust=1649984699388829&usg=AOvVaw1SsVrpzmhPpQqKGwmlKqAY), if you would like further information about when and how to do so.)

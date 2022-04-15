@@ -1,0 +1,7 @@
+---
+title: How can I get started with Critical Making?
+categories:
+  - Managing Classroom Activities
+
+---
+If you are intrigued by the idea of critical making, begin with Diana Rendina’s [impressive set of resources](https://www.google.com/url?q=http://renovatedlearning.com/makerspace-resources/&sa=D&source=editors&ust=1649984699410805&usg=AOvVaw2GaJNm1cY1g13cnRd7I6lT) at Renovated Learning. This is a very popular way to start your journey in critical making and physical computing, but you'll want to see if this sort of activity, which often requires access to flexible space and a budget for buying materials, is achievable within your institution. If you seek more on the topic, Garnet Hertz’s “[What Is Critical Making?](https://www.google.com/url?q=http://current.ecuad.ca/what-is-critical-making&sa=D&source=editors&ust=1649984699410997&usg=AOvVaw1mVGTYpLoyQ_dJfnUs6RNJ)” presents a well-researched and intellectually ambitious theory of making. “[Critical Making: Design and the Digital Humanities](https://www.google.com/url?q=http://visiblelanguagejournal.com/issue/172&sa=D&source=editors&ust=1649984699411273&usg=AOvVaw2lsB-dXcyIfwIN4stpzaxT),” a special issue of Visible Language guest-edited by Jessica Barness and Amy Papaelias, contains a number of theoretically oriented reflections on critical making.
