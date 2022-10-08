@@ -42,6 +42,15 @@ h1 {
 .plan__item {
 	margin-top: 0.25rem;
 	font-size: 1.1rem;
+	cursor: pointer;
+	padding: 2px;
+	border: 1px solid white;
+}
+
+.plan__item.plan__item--clicked {
+	cursor: auto;
+	background: rgba(0, 0, 0, 0.05);
+	border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 @media only screen and (min-device-width: 480px) {
