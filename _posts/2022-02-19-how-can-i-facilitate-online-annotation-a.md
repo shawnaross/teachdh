@@ -1,0 +1,7 @@
+---
+title: How can I facilitate online annotation activities for my students?
+categories:
+  - Managing Classroom Activities
+
+---
+[Hypothes.is](https://www.google.com/url?q=https://hypothes.is/&sa=D&source=editors&ust=1649984699407646&usg=AOvVaw0JBX2c47jXD_FXSEwbMUi9) as a platform for enabling group annotation. The company’s own Jeremy Dean has written an [introduction to using it in the classroom](https://www.google.com/url?q=https://hypothes.is/blog/using-hypothesis-groups-in-the-classroom/&sa=D&source=editors&ust=1649984699407825&usg=AOvVaw3zUWjrQseIFetJgHcDb5H5), and they also provide a “[Quick Start Guide for Teachers](https://www.google.com/url?q=https://hypothes.is/quick-start-guide/&sa=D&source=editors&ust=1649984699407966&usg=AOvVaw0fqGK02q5itrNYtA1dO5aq)” if you want to jump in. [In this post for Studies in the Novel](https://www.google.com/url?q=https://studiesinthenovel.org/content/collaborative-annotations-classroom-visual-and-electronic-communication&sa=D&source=editors&ust=1649984699408166&usg=AOvVaw0u6VExqdZHxQPpPtLVPHXF), Michael Griffin has helpfully summarized his use of [the annotation platform A.nnotate](https://www.google.com/url?q=http://a.nnotate.com/&sa=D&source=editors&ust=1649984699408308&usg=AOvVaw01JyoTEMWVnWZj_1vqy9qx). His ingenious pairing of collective annotation with a multimodal activity shows how flexible and modular DH activities can be.

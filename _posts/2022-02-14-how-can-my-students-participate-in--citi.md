@@ -1,0 +1,11 @@
+---
+title: >-
+  How can my students participate in ‘citizen science’ or ‘citizen humanities’
+  crowdsourced research activities?
+categories:
+  - Managing Classroom Activities
+
+---
+Crowdsourcing for particular kinds of research (especially labour-intensive tasks like transcription or labeling) is becoming increasingly common in DH work. Sometimes known as “citizen humanities,” there are various projects, including [Operation War Diary](https://www.google.com/url?q=https://www.operationwardiary.org/&sa=D&source=editors&ust=1649984699413749&usg=AOvVaw0ndIG_crODrWhegkqchgIf), [Shakespeare’s World](https://www.google.com/url?q=https://www.shakespearesworld.org/%23/&sa=D&source=editors&ust=1649984699413935&usg=AOvVaw280ObZwyMljUbF8U0W7zwe), [annoTATE](https://www.google.com/url?q=https://anno.tate.org.uk/%23/&sa=D&source=editors&ust=1649984699414102&usg=AOvVaw1yKE9Cvpu2VX8B2kq4Nnd-), [Science Gossip](https://www.google.com/url?q=https://www.sciencegossip.org/&sa=D&source=editors&ust=1649984699414238&usg=AOvVaw0EXYshpz5ozDtReeYcD3ds), [Notes from Nature](https://www.google.com/url?q=https://www.notesfromnature.org/?_ga%3D1.14940287.839718741.1468302077&sa=D&source=editors&ust=1649984699414405&usg=AOvVaw35TgcfruUntVRv70tRg9XR), and [Old Weather](https://www.google.com/url?q=https://www.oldweather.org/%23/&sa=D&source=editors&ust=1649984699414543&usg=AOvVaw2rEkc4t72gj1a0xN2fKpO7), which invite engagement with newly digitized archival documents and datasets. They now also have a [Project Builder](https://www.google.com/url?q=https://www.zooniverse.org/lab&sa=D&source=editors&ust=1649984699414683&usg=AOvVaw1naosIy4HkVuuUB7Vcd8s3) feature in which you can build your own citizen science project.
+
+For a bit of reading on this topic, Melanie Kill’s “[Teaching Digital Rhetoric: Wikipedia, Collaboration, and the Politics of Free Knowledge](https://www.google.com/url?q=http://www.openbookpublishers.com/htmlreader/DHP/chap16.html%23ch16&sa=D&source=editors&ust=1649984699414952&usg=AOvVaw2AycOKrQEwsDv90ncjKpr8)” provides a lot of food for thought.

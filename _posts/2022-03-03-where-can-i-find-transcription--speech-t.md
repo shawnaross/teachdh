@@ -1,0 +1,10 @@
+---
+title: >-
+  Where can I find transcription (speech-to-text) software to caption videos or
+  screencasts?
+categories:
+  - Ensuring Accessibility
+  - Teaching in a Digital Classroom
+
+---
+Speech recognition software can help you make your lectures, whether virtual or face-to-face, more accessible. Advise your students to look for the “CC” logo to access closed captioning for common video players and videoconferencing software (such as YouTube and Zoom). If you are producing a video on YouTube, you can [enter captions yourself](https://www.google.com/url?q=https://support.google.com/youtube/answer/2734796?hl%3Den&sa=D&source=editors&ust=1649984699365691&usg=AOvVaw1SJtEVIoAM8EdhYg_vfMuc) or have them [added automatically](https://www.google.com/url?q=https://support.google.com/youtube/answer/6373554?hl%3Den&sa=D&source=editors&ust=1649984699365976&usg=AOvVaw1A2s4KSdkfGmfJMFWPo8_H) (with less precision, admittedly). Screen recorders like [Loom](https://www.google.com/url?q=https://support.loom.com/hc/en-us/articles/360017206958-How-to-read-a-transcript-of-your-video&sa=D&source=editors&ust=1649984699366245&usg=AOvVaw0yX7p5PQXlZJicHzWm65lK) and [Screencast-o-matic](https://www.google.com/url?q=https://screencast-o-matic.com/blog/accessible-video/&sa=D&source=editors&ust=1649984699366532&usg=AOvVaw2W9SAVFmehGs5VYsSqHvR0) have many options for adding captions, and you can add captions to live or recorded slideshow presentations with [GoogleSlides](https://www.google.com/url?q=https://support.google.com/docs/answer/9109474?hl%3Den&sa=D&source=editors&ust=1649984699366788&usg=AOvVaw1t-hr3_JfMxipiFrOfA0Mp),[PowerPoint](https://www.google.com/url?q=https://support.microsoft.com/en-us/office/present-with-real-time-automatic-captions-or-subtitles-in-powerpoint-68d20e49-aec3-456a-939d-34a79e8ddd5f&sa=D&source=editors&ust=1649984699367059&usg=AOvVaw2RK4JAHhsA3zzQQr0CKVZq), and the like.

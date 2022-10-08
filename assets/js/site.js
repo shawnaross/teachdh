@@ -276,6 +276,7 @@ $(function () {
       $('#categories figcaption span').text(show ? '-' : '+')
       $('#categories figcaption').attr('aria-label', 'Click to ' + (show ? 'show' : 'hide') + ' category list')
     })
+  $('#categories figcaption').trigger('click')
 
   // The next few streams control closing and opening the tray:
   // This fixes some spacing issues:

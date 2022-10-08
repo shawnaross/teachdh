@@ -1,0 +1,8 @@
+---
+title: What are the foundational texts of the digital humanities?
+categories:
+  - Introduction
+  - Contributing to Your Research
+
+---
+To get a good feel for the disciplinary and methodological range of DH, you’ll want to browse some of the many excellent open-access handbooks and companions to the field, such as the University of Minnesota book series [Debates in Digital Humanities](https://www.google.com/url?q=https://dhdebates.gc.cuny.edu/&sa=D&source=editors&ust=1649984699344776&usg=AOvVaw0p_CmJqSwOaHfwSNVmApMc) and the Blackwell [Companion to DH](https://www.google.com/url?q=http://www.digitalhumanities.org/companion/&sa=D&source=editors&ust=1649984699345154&usg=AOvVaw0HZz7pW6CU8G4ImIaQlnPc)and/or [Companion to DIgital Literary Studies](https://www.google.com/url?q=http://www.digitalhumanities.org/companionDLS/&sa=D&source=editors&ust=1649984699345571&usg=AOvVaw0L6HnPl3e-kdWHC-u1v9ix). Edited introductions to DH pedagogy introductions include Brett D. Hirsch’s [Digital Humanities Pedogogy](https://www.google.com/url?q=https://books.openbookpublishers.com/10.11647/obp.0024.pdf&sa=D&source=editors&ust=1649984699345953&usg=AOvVaw0tceQLT2ZURy1DJ2tVgtPd) and the collaborative MLA resource, [Digital Pedagogy in the Humanities: Concepts, Models, and Experiments](https://www.google.com/url?q=https://digitalpedagogy.hcommons.org/&sa=D&source=editors&ust=1649984699346232&usg=AOvVaw150FJCs_vUj_ni-fmCkF5i). Search this web companion for “digital humanities journals” or “digital humanities organizations” to learn more about keeping up with current publications in the field.

@@ -1,0 +1,13 @@
+---
+title: Where can I find tools for the half-hour classroom activities?
+categories:
+  - Designing Classroom Activities
+  - Creating Digital Assignments
+
+---
+Once you have experimented with a particular digital activity and decide that it’s worth integrating in future semesters, you may want to explore your other options. But before then, make your life easier by adopting these simple options:
+
+*   Collective Image Annotation:[Flickr](https://www.google.com/url?q=https://www.flickr.com/&sa=D&source=editors&ust=1649984699392395&usg=AOvVaw0KUZn2M8IO1lMfhMYeGMpC) (or, for more sophisticated options, [ThingLink](https://www.google.com/url?q=https://www.thinglink.com/&sa=D&source=editors&ust=1649984699392534&usg=AOvVaw1QvaStd6jvo2YiiJuY0fi0))
+*   In-Depth Most-Frequent-Word Analysis:[Voyant](https://www.google.com/url?q=https://voyant-tools.org/&sa=D&source=editors&ust=1649984699392913&usg=AOvVaw3_VNs50KZf8rXvvb5pdWKZ) (check out [our Voyant materials here](https://www.google.com/url?q=https://scalar.usc.edu/works/digital-humanities-in-the-classroom-a-practical-introduction/classroom-activity-sets&sa=D&source=editors&ust=1649984699393330&usg=AOvVaw0kd10EcPTj9_YxisWysgA1))
+*   Variant Analysis: Compare Documents functions in [Microsoft Word](https://www.google.com/url?q=https://support.microsoft.com/en-us/office/compare-and-merge-two-versions-of-a-document-f5059749-a797-4db7-a8fb-b3b27eb8b87e&sa=D&source=editors&ust=1649984699393883&usg=AOvVaw0yZTGS1ZEHt_OaB31v6YSH) or [GoogleDocs](https://www.google.com/url?q=https://www.howtogeek.com/660946/how-to-compare-documents-in-google-docs/&sa=D&source=editors&ust=1649984699394097&usg=AOvVaw0ca1VpTFPmR22RGycfqt2P) (Juxta Commons has, unfortunately, recently been retired, so only those very adept in Java are now able to use [Juxta](https://www.google.com/url?q=https://www.juxtasoftware.org/&sa=D&source=editors&ust=1649984699394354&usg=AOvVaw2jQG5jMPV5-1EUHNLtQrlZ))
+*   Digital Archive or Edition Assessment: Search this web companion for “list of archives” to find some examples of resources to show your students, and review our [Digital Archive Review assignment materials](https://www.google.com/url?q=https://scalar.usc.edu/works/digital-humanities-in-the-classroom-a-practical-introduction/assignment-sets&sa=D&source=editors&ust=1649984699394932&usg=AOvVaw15-woEulEnFbEoY6rP9hQ6) for ideas about how to assess digital resources

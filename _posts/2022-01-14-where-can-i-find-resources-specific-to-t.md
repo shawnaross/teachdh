@@ -1,0 +1,9 @@
+---
+title: >-
+  Where can I find resources specific to teaching during public health or
+  environmental crises?
+categories:
+  - Teaching in a Digital Classroom
+
+---
+First of all, [familiarize yourself with the differences between](https://www.google.com/url?q=https://er.educause.edu/articles/2020/3/the-difference-between-emergency-remote-teaching-and-online-learning&sa=D&source=editors&ust=1649984699494257&usg=AOvVaw3HhKUr80SJgSXNC1nWVIe8) teaching a class that was planned to be delivered remotely versus trying to accommodate a crisis on the fly, in which case you can learn from [early 2020 practices of “panic-gogy.”](https://www.google.com/url?q=https://www.npr.org/2020/03/19/817885991/panic-gogy-teaching-online-classes-during-the-coronavirus-pandemic&sa=D&source=editors&ust=1649984699494677&usg=AOvVaw1DIOaWe3kuDKSNCkHJm9e2) Issues of inclusion and equity become paramount during crises, which tend to impact the vulnerable the most, [so learn about these inequities](https://www.google.com/url?q=https://www.oecd.org/coronavirus/policy-responses/the-impact-of-covid-19-on-student-equity-and-inclusion-supporting-vulnerable-students-during-school-closures-and-school-re-openings-d593b5c8/&sa=D&source=editors&ust=1649984699495185&usg=AOvVaw3AP6kbaBK5sUS8Z3GLClrp) so you know how to adjust your course plans and prep to mitigate them. Learn from teachers who have worked during past environmental crises, [such as Hurricane Harvey](https://www.google.com/url?q=https://www.higheredtoday.org/2020/04/20/supporting-college-students-public-health-crisis-lessons-learned-hurricane-harvey/&sa=D&source=editors&ust=1649984699495565&usg=AOvVaw3zdgvy5kpgSq2tMMl7nfSP).

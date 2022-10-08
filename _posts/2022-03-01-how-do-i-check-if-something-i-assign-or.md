@@ -1,0 +1,8 @@
+---
+title: How do I check if something I assign or give my students is accessible?
+categories:
+  - Ensuring Accessibility
+  - Teaching in a Digital Classroom
+
+---
+Simply searching any search engine for “accessible course design” will yield many good results, but keep in mind that all materials should have high contrast in their color palette and use a consistent information hierarchy. All images should all have [alt text](https://www.google.com/url?q=https://webaim.org/techniques/alttext/&sa=D&source=editors&ust=1649984699368883&usg=AOvVaw37eQLwo0zu2sqa3kZz8f5W), and all videos and podcasts should have captions or transcripts. Any document should be shared in as many media formats as possible. Online materials should conform to the standards of [WebAIM: Web Accessibility in Mind](https://www.google.com/url?q=https://webaim.org/&sa=D&source=editors&ust=1649984699369142&usg=AOvVaw1Cb2T_FtfbGI1lhXkUu1lq) and therefore pass the test of the [WAVE: Web Accessibility Evaluation Tool](https://www.google.com/url?q=https://wave.webaim.org/&sa=D&source=editors&ust=1649984699369373&usg=AOvVaw1Xtnxnpr-tcRqhWs-afqQw). Other accessibility checkers are available on various browsers, mobile phone operating systems, and learning management systems, so search “accessibility checker” + “your platform here” to find out more. Keep in mind that a free Coursera [Introduction to Accessibility in Course Design](https://www.google.com/url?q=https://www.coursera.org/learn/accessibility&sa=D&source=editors&ust=1649984699369593&usg=AOvVaw0h1qcZjS8ed9lJxkPqLxa0) is available and that [DHSI regularly hosts a week-long course on accessibility](https://www.google.com/url?q=https://dhsi.org/&sa=D&source=editors&ust=1649984699369846&usg=AOvVaw3fo5BJZJfQzc0s5rl5Rs3x).

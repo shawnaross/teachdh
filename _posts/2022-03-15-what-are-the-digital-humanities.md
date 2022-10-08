@@ -1,0 +1,7 @@
+---
+title: What are the digital humanities?
+categories:
+  - Introduction
+
+---
+The Digital Humanities, or DH, is a varied field that attempts to apply computational methods to investigate traditional objects of humanities studies or to apply humanistic concepts to analyze any platform, too, or trend in the digital world. Because the precise definition of the field is hotly contested, we recommend browsing Jason Heppler’s [What Is Digital Humanities site](https://www.google.com/url?q=https://whatisdigitalhumanities.com/&sa=D&source=editors&ust=1649984699340951&usg=AOvVaw2bz9xc3cIKjLrivbCvQhUN) to see some of the many answers that experts have floated. For recommendations about scholarship to read about the field, check out our [Introduction page in the first edition’s Web Companion](https://www.google.com/url?q=https://scalar.usc.edu/works/digital-humanities-in-the-classroom-a-practical-introduction/introduction&sa=D&source=editors&ust=1649984699341195&usg=AOvVaw2twFA4gE0q4qeX_ayhex1l). For a new resource with many themed clusters on digital pedagogy specifically, see [Digital Pedagogy in the Humanities: Concepts, Models, and Experiments](https://www.google.com/url?q=https://digitalpedagogy.hcommons.org/&sa=D&source=editors&ust=1649984699341363&usg=AOvVaw3FlIQxJSSV-UsdzBcJB5lr).
