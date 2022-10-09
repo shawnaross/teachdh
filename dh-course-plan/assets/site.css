@@ -4,6 +4,14 @@
 	--label-font-size: 1.5rem;
 	--label-font-weight: 700;
 	--element-max-width: 960px;
+	--background-light: white;
+	--foreground-light: black;
+	--item-clicked-background-light: rgba(0, 0, 0, 0.05); 
+	--item-clicked-border-light: rgba(0, 0, 0, 0.5); 
+	--background-dark: rgb(28, 28, 28);
+	--foreground-dark: rgb(204, 204, 204);
+	--item-clicked-background-dark: rgba(255, 255, 255, 0.05); 
+	--item-clicked-border-dark: rgba(255, 255, 255, 0.5); 
 }
 
 html {
@@ -30,7 +38,6 @@ h1 {
 	right: 0;
 	padding: 1rem;
 	text-align: center;
-	background: white;
 }
 
 .button {
@@ -68,13 +75,7 @@ h1 {
 	font-size: var(--item-font-size);
 	cursor: pointer;
 	padding: 2px;
-	border: 1px solid white;
-}
-
-.plan__item.plan__item--clicked {
-	cursor: auto;
-	background: rgba(0, 0, 0, 0.05);
-	border: 1px solid rgba(0, 0, 0, 0.5);
+	border: 1px solid;
 }
 
 .scores__title {
@@ -107,5 +108,43 @@ h1 {
 	.scores__title,
 	.plan__label {
 		text-align: right;
+	}
+}
+
+html {
+	color: var(--foreground-light);
+	background: var(--background-light);
+}
+
+#generator-home {
+	background: var(--background-light);
+}
+
+.plan__item {
+	border-color: var(--background-light);
+}
+
+.plan__item.plan__item--clicked {
+	background: var(--item-clicked-background-light);
+	border-color: var(--item-clicked-border-light);
+}
+
+@media (prefers-color-scheme: dark) {
+	html {
+		color: var(--foreground-dark);
+		background: var(--background-dark);
+	}
+
+	#generator-home {
+		background: var(--background-dark);
+	}
+
+	.plan__item {
+		border-color: var(--background-dark);
+	}
+
+	.plan__item.plan__item--clicked {
+		background: var(--item-clicked-background-dark);
+		border-color: var(--item-clicked-border-dark);
 	}
 }
