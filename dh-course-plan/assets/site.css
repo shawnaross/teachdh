@@ -12,6 +12,7 @@
 	--foreground-dark: rgb(204, 204, 204);
 	--item-clicked-background-dark: rgba(255, 255, 255, 0.05); 
 	--item-clicked-border-dark: rgba(255, 255, 255, 0.5); 
+	--small-font-size: calc(var(--item-font-size) * 0.75);
 }
 
 html {
@@ -28,7 +29,7 @@ h1 {
 	max-width: var(--element-max-width);
 	margin: auto;
 	margin-bottom: 2rem;
-	font-size: var(--item-font-size);
+	font-size: var(--small-font-size);
 }
 
 #generator-home {
@@ -95,6 +96,10 @@ h1 {
 
 .score {
 	font-size: var(--item-font-size);
+}
+
+.score__actual-value {
+	font-size: var(--small-font-size);
 }
 
 @media only screen and (min-device-width: 480px) {
