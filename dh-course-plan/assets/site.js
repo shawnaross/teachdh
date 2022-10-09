@@ -24,8 +24,8 @@ function runSite(data) {
 	}
 
 	function attachScores() {
-		const output = $("#output");
-		const list = $('<ul id="scores"></ul>');
+		const output = $('<div class="scores"/>');
+		const list = $('<ul id="scores" class="scores__list"></ul>');
 		$('<h2 class="scores__title">Effort Required:</h2>').appendTo(output);
 		scoreCategories.forEach(function (name) {
 			const id = makeId(name);
@@ -39,6 +39,7 @@ function runSite(data) {
 		});
 
 		list.appendTo(output);
+		output.appendTo($("#output"));
 	}
 
 	const outputElement = $("#output");
