@@ -5,19 +5,20 @@ var views = {};
 (function () {
 	var Plan = {
 		view: function (vnode) {
-			var item = vnode.attrs.item;
-			var category = vnode.attrs.category;
 			return m(
 				"div",
 				{
 					class:
 						"plan__item" +
-						(item.text !== "" && item.clicked ? " plan__item--clicked" : ""),
+						(vnode.attrs.item.text !== "" && vnode.attrs.item.clicked
+							? " plan__item--clicked"
+							: ""),
 					onclick: function () {
-						if (item.text !== "") vnode.attrs.actions.savePlanItem(category);
+						if (vnode.attrs.item.text !== "")
+							vnode.attrs.actions.savePlanItem(vnode.attrs.category);
 					},
 				},
-				item.text
+				vnode.attrs.item.text
 			);
 		},
 	};
