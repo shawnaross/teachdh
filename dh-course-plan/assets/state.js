@@ -2,7 +2,7 @@
 
 var state = {};
 
-(function() {
+(function () {
 	var initialState = {
 		categories: {},
 		scores: {},
@@ -13,52 +13,62 @@ var state = {};
 	var GENERATE_PLAN = "GENERATE_PLAN";
 	var SAVE_PLAN_ITEM = "SAVE_PLAN_ITEM";
 
+	var responders = {};
+
+	responders[UPDATE_CATEGORIES] = function (state, action) {
+		return immer.produce(state, function (draft) {
+			draft.categories = action.payload.categories;
+			draft.plan = obj.map(action.payload.categories, function (item, _, i) {
+				if (i === 0) {
+					draft.scores = obj.map(item[0], function (_, key) {
+						return key === "text" ? undefined : 0;
+					});
+				}
+				return {
+					clicked: false,
+					text: "",
+				};
+			});
+			return draft;
+		});
+	};
+
+	responders[GENERATE_PLAN] = function (state) {
+		return immer.produce(state, function (draft) {
+			draft.scores = obj.map(draft.scores, function () {
+				return 0;
+			});
+			obj.eachKey(draft.categories, function (category) {
+				if (!draft.plan[category].clicked) {
+					draft.plan[category] = arr.randomItem(draft.categories[category]);
+					draft.plan[category].clicked = false;
+				}
+				draft.scores = obj.map(draft.scores, function (score, scoreCategory) {
+					return score + draft.plan[category][scoreCategory];
+				});
+			});
+			return draft;
+		});
+	};
+
+	responders[SAVE_PLAN_ITEM] = function (state, action) {
+		return immer.produce(state, function (draft) {
+			draft.plan[action.payload.category].clicked =
+				!draft.plan[action.payload.category].clicked;
+		});
+	};
+
 	var reducer = function (state, action) {
 		state = state || initialState;
-		if (action.type === UPDATE_CATEGORIES) {
-			return immer.produce(state, function (draft) {
-				draft.categories = action.payload.categories;
-				draft.plan = obj.map(action.payload.categories, function (item, _, i) {
-					if (i === 0) {
-						draft.scores = obj.map(item[0], function (_, key) {
-							return key === "text" ? undefined : 0;
-						});
-					}
-					return {
-						clicked: false,
-						text: "",
-					};
-				});
-				return draft;
-			});
+
+		if (Object.hasOwn(responders, action.type)) {
+			return responders[action.type](state, action);
 		}
-		if (action.type === GENERATE_PLAN) {
-			return immer.produce(state, function (draft) {
-				draft.scores = obj.map(draft.scores, function () {
-					return 0;
-				});
-				obj.eachKey(draft.categories, function (category) {
-					if (!draft.plan[category].clicked) {
-						draft.plan[category] = arr.randomItem(draft.categories[category]);
-						draft.plan[category].clicked = false;
-					}
-					draft.scores = obj.map(draft.scores, function (score, scoreCategory) {
-						return score + draft.plan[category][scoreCategory];
-					});
-				});
-				return draft;
-			});
-		}
-		if (action.type === SAVE_PLAN_ITEM) {
-			return immer.produce(state, function (draft) {
-				draft.plan[action.payload.category].clicked =
-					!draft.plan[action.payload.category].clicked;
-			});
-		}
+
 		return state;
 	};
 
-	state.store = Redux.createStore(reducer, initialState);
+	state.store = Redux.createStore(reducer);
 	state.actions = {};
 
 	state.actions.updateCategories = function (categories) {
@@ -84,4 +94,4 @@ var state = {};
 			},
 		});
 	};
-})()
+})();
