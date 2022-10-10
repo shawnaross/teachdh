@@ -1,4 +1,4 @@
-/* globals immer obj arr Redux */
+/* globals immer obj arr */
 
 var state = {};
 
@@ -68,7 +68,16 @@ var state = {};
 		return state;
 	};
 
-	state.store = Redux.createStore(reducer);
+	var storeData = undefined;
+	state.store = {
+		dispatch: function(action) {
+			storeData = reducer(storeData, action);
+		},
+		getState: function() {
+			return storeData || reducer(undefined, {});
+		}
+	}
+
 	state.actions = {};
 
 	state.actions.updateCategories = function (categories) {
