@@ -1,9 +1,12 @@
 /* globals m state views */
 
-m.mount(document.getElementById("output"), views.App);
+var Wrapper = {
+	view: function() {
+		var attrs = Object.assign({
+			actions: state.actions,
+		}, state.store.getState())
+		return m(views.App, attrs);
+	}
+}
 
-state.store.subscribe(function () {
-	return function () {
-		m.redraw();
-	};
-});
+m.mount(document.getElementById("output"), Wrapper);

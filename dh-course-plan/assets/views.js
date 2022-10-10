@@ -1,4 +1,4 @@
-/* globals state m viewUtils obj */
+/* globals m viewUtils obj */
 
 var views = {};
 
@@ -14,7 +14,7 @@ var views = {};
 						"plan__item" +
 						(item.text !== "" && item.clicked ? " plan__item--clicked" : ""),
 					onclick: function () {
-						if (item.text !== "") state.actions.savePlanItem(category);
+						if (item.text !== "") vnode.attrs.actions.savePlanItem(category);
 					},
 				},
 				item.text
@@ -31,6 +31,7 @@ var views = {};
 						m(Plan, {
 							item: vnode.attrs.plan[category],
 							category: category,
+							actions: vnode.attrs.actions,
 						}),
 					]);
 				}),
@@ -63,13 +64,13 @@ var views = {};
 	};
 
 	var Generator = {
-		view: function () {
+		view: function (vnode) {
 			return m("div#generator-home", [
 				m(
 					"button.button",
 					{
 						onclick: function () {
-							state.actions.generatePlan();
+							vnode.attrs.actions.generatePlan();
 						},
 					},
 					"Generate A Course Plan"
@@ -88,7 +89,7 @@ var views = {};
 	};
 
 	views.App = {
-		oninit: function () {
+		oninit: function (vnode) {
 			return m
 				.request({
 					method: "GET",
@@ -96,22 +97,24 @@ var views = {};
 					withCredentials: true,
 				})
 				.then(function (data) {
-					state.actions.updateCategories(data);
+					vnode.attrs.actions.updateCategories(data);
 				});
 		},
-		view: function () {
-			var s = state.store.getState();
+		view: function (vnode) {
 			return m("div", [
 				m(About),
 				m(Plans, {
-					categories: s.categories,
-					plan: s.plan,
+					categories: vnode.attrs.categories,
+					plan: vnode.attrs.plan,
+					actions: vnode.attrs.actions,
 				}),
 				m(Scores, {
-					scores: s.scores,
-					total: Object.keys(s.categories).length,
+					scores: vnode.attrs.scores,
+					total: Object.keys(vnode.attrs.categories).length,
 				}),
-				m(Generator),
+				m(Generator, {
+					actions: vnode.attrs.actions,
+				}),
 			]);
 		},
 	};
