@@ -45,24 +45,46 @@ var views = {};
 			if (vnode.attrs.scores[Object.keys(vnode.attrs.scores)[0]] === 0) {
 				return null;
 			}
-			return m("div.scores", [
-				m("h2.scores__title", "Results"),
-				m(
-					"u2.scores__list",
-					obj.mapToArray(vnode.attrs.scores, function (score, key) {
-						score = score / vnode.attrs.total;
-						return m("li.score", [
-							m("span.score__label", viewUtils.makeName(key) + ": "),
-							m("span.score__value", [
-								viewUtils.scoreToResult(score),
-								m("span.score__actual-value", " (" + score.toFixed(2) + ")"),
-							]),
-						]);
-					})
-				),
+			var results = {};
+			return m("div", [
+				m("div.scores", [
+					m("h2.scores__title", "Results"),
+					m(
+						"u2.scores__list",
+						obj.mapToArray(vnode.attrs.scores, function (score, key) {
+							score = score / vnode.attrs.total;
+							var result = viewUtils.scoreToResult(score);
+							var category = viewUtils.makeName(key);
+							results[key] = result;
+							return m("li.score", [
+								m("span.score__label", category + ": "),
+								m("span.score__value", [
+									result,
+								]),
+							]);
+						}),
+					),
+				]),
+				m("div.scores", [
+					m("h2.scores__title", "Review"),
+					m(".scores__list",
+						obj.mapToArray(results, function(result, category) {
+							return m("p.score__review", [
+								m("strong", viewUtils.makeName(category) + ": "),
+								viewUtils.resultToReview(result, category),
+							]);
+						}))
+				])
 			]);
+
 		},
 	};
+
+	var ScoreReport = {
+		view: function(vnode) {
+
+		}
+	}
 
 	var Generator = {
 		view: function (vnode) {
@@ -84,7 +106,7 @@ var views = {};
 		view: function () {
 			return m(
 				"p.about",
-				'Click "Generate A Course Plan". Keep elements in your plan by clicking on them (click again to re-roll them). Don\'t forget to check your results at the bottom (5 is highest)!'
+				'Press "Generate A Course Plan" to view a randomized course design. Reroll as many times as you like. If you like a particular result, click on it to preserve it through the next randomization. When you like your design, scroll down to check its scores for synchronicity, active learning, and teacher effort, then consult the recommendations at the bottom of the page to remedy any imbalance you are not happy with.'
 			);
 		},
 	};

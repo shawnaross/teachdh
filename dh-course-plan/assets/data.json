@@ -9,13 +9,13 @@
 		{
 			"text": "Podcast (audio with script) or prerecorded video (with closed- captioning)",
 			"synchronicity": 1,
-			"active-learning": 1,
+			"active-learning": 2,
 			"teaching-effort": 4
 		},
 		{
 			"text": "Prerecorded video or audio with option for user annotations or comments",
-			"synchronicity": 1,
-			"active-learning": 3,
+			"synchronicity": 3,
+			"active-learning": 4,
 			"teaching-effort": 5
 		},
 		{
@@ -28,13 +28,13 @@
 			"text": "Face-to-face lecture",
 			"synchronicity": 5,
 			"active-learning": 2,
-			"teaching-effort": 3
+			"teaching-effort": 2
 		},
 		{
 			"text": "Restricted only to certain meeting days or ten-minute blocks",
 			"synchronicity": 4,
-			"active-learning": 4,
-			"teaching-effort": 2
+			"active-learning": 5,
+			"teaching-effort": 1
 		}
 	],
 	"Discussion": [
@@ -42,18 +42,18 @@
 			"text": "Full-class asynchronous discussion boards",
 			"synchronicity": 1,
 			"active-learning": 3,
-			"teaching-effort": 2
+			"teaching-effort": 5
 		},
 		{
 			"text": "Small-group asynchronous discussion boards",
 			"synchronicity": 1,
-			"active-learning": 3,
-			"teaching-effort": 4
+			"active-learning": 3.5,
+			"teaching-effort": 4.5
 		},
 		{
 			"text": "Full-class face-to-face discussion with small-group breakouts",
 			"synchronicity": 5,
-			"active-learning": 4,
+			"active-learning": 4.25,
 			"teaching-effort": 3
 		},
 		{
@@ -65,14 +65,14 @@
 		{
 			"text": "Verbal discussion supplemented by collaborative notetaking (e.g., through GoogleDocs)",
 			"synchronicity": 5,
-			"active-learning": 4,
-			"teaching-effort": 3
+			"active-learning": 4.5,
+			"teaching-effort": 2
 		},
 		{
 			"text": "Student-led (select one student per day to lead discussion for 10-15 minutes)",
 			"synchronicity": 5,
 			"active-learning": 4,
-			"teaching-effort": 3
+			"teaching-effort": 1
 		}
 	],
 	"Office hours": [
@@ -84,15 +84,15 @@
 		},
 		{
 			"text": "Required individual office hours attendance (once per semester)",
-			"synchronicity": 4,
+			"synchronicity": 3,
 			"active-learning": 4,
-			"teaching-effort": 4
+			"teaching-effort": 4.5
 		},
 		{
 			"text": "Required small-group office hours attendance (perhaps paired with group assignment)",
 			"synchronicity": 5,
 			"active-learning": 5,
-			"teaching-effort": 4
+			"teaching-effort": 3
 		},
 		{
 			"text": "Replace one week of course content with mandatory office hours meeting",
@@ -110,7 +110,7 @@
 			"text": "Offer audio-only option (e.g., phone call) for students technological or logistical limitations",
 			"synchronicity": 5,
 			"active-learning": 5,
-			"teaching-effort": 5
+			"teaching-effort": 4
 		}
 	],
 	"Feedback": [
@@ -128,7 +128,7 @@
 		},
 		{
 			"text": "Written or recorded reviews by instructor and peers before submission; reviews by instructor after",
-			"synchronicity": 4,
+			"synchronicity": 4.5,
 			"active-learning": 4,
 			"teaching-effort": 5
 		},
@@ -141,14 +141,14 @@
 		{
 			"text": "Anonymized peer feedback through course LMS",
 			"synchronicity": 3,
-			"active-learning": 4,
+			"active-learning": 3,
 			"teaching-effort": 1
 		},
 		{
 			"text": "Brief but frequent feedback",
-			"synchronicity": 3,
-			"active-learning": 3,
-			"teaching-effort": 3
+			"synchronicity": 4.5,
+			"active-learning": 2,
+			"teaching-effort": 2
 		}
 	],
 	"Course texts": [
@@ -160,32 +160,32 @@
 		},
 		{
 			"text": "Focused on a particular theme",
-			"synchronicity": 3,
-			"active-learning": 3,
-			"teaching-effort": 3
+			"synchronicity": 1,
+			"active-learning": 3.75,
+			"teaching-effort": 2
 		},
 		{
 			"text": "Paired down rigorously to pair with particular activities/assignments",
 			"synchronicity": 5,
 			"active-learning": 4,
-			"teaching-effort": 2
+			"teaching-effort": 1
 		},
 		{
 			"text": "Eclectic use of multiple genres and media formats",
 			"synchronicity": 3,
-			"active-learning": 4,
-			"teaching-effort": 4
+			"active-learning": 4.5,
+			"teaching-effort": 4.25
 		},
 		{
 			"text": "Emphasis on challenging a canon or convention",
-			"synchronicity": 4,
+			"synchronicity": 5,
 			"active-learning": 5,
 			"teaching-effort": 3
 		},
 		{
 			"text": "Chosen because of affordability and accessibility",
 			"synchronicity": 4,
-			"active-learning": 4,
+			"active-learning": 3.5,
 			"teaching-effort": 5
 		}
 	],
@@ -204,46 +204,46 @@
 		},
 		{
 			"text": "Outward-facing: Links and bibliographies to show further reading/sources for students to consult",
-			"synchronicity": 4,
-			"active-learning": 5,
+			"synchronicity": 4.75,
+			"active-learning": 4.75,
 			"teaching-effort": 5
 		},
 		{
 			"text": "Multimedia emphasis: image, video, audio, etc",
 			"synchronicity": 3,
 			"active-learning": 4,
-			"teaching-effort": 4
+			"teaching-effort": 4.5
 		},
 		{
 			"text": "Create or edit collaboratively with students",
 			"synchronicity": 5,
 			"active-learning": 5,
-			"teaching-effort": 3
+			"teaching-effort": 2.25
 		},
 		{
 			"text": "Restricted to providing historical or theoretical contexts not given in course readings",
 			"synchronicity": 3,
-			"active-learning": 2,
+			"active-learning": 1.5,
 			"teaching-effort": 2
 		}
 	],
 	"Activities": [
 		{
 			"text": "Emphasis on building discussion (e.g., Think Pair Share)",
-			"synchronicity": 5,
+			"synchronicity": 4.75,
 			"active-learning": 5,
 			"teaching-effort": 1
 		},
 		{
 			"text": "Emphasis on practicing writing skills or technical skills",
-			"synchronicity": 3,
-			"active-learning": 5,
+			"synchronicity": 2,
+			"active-learning": 4.25,
 			"teaching-effort": 3
 		},
 		{
 			"text": "Emphasis on making progress for a particular graded assignment or test",
 			"synchronicity": 5,
-			"active-learning": 2,
+			"active-learning": 1,
 			"teaching-effort": 2
 		},
 		{
@@ -254,52 +254,52 @@
 		},
 		{
 			"text": "Emphasis on community building and/or self-reflection",
-			"synchronicity": 3,
+			"synchronicity": 3.75,
 			"active-learning": 4,
-			"teaching-effort": 3
+			"teaching-effort": 2
 		},
 		{
 			"text": "Emphasis on hands-on experience, making, or building",
-			"synchronicity": 5,
-			"active-learning": 5,
+			"synchronicity": 4.25,
+			"active-learning": 4.5,
 			"teaching-effort": 5
 		}
 	],
 	"Traditional assignments": [
 		{
 			"text": "3 tests/exams with weekly short writings or quizzes",
-			"synchronicity": 4,
+			"synchronicity": 3.5,
 			"active-learning": 1,
 			"teaching-effort": 2
 		},
 		{
 			"text": "1-3 major projects with daily or weekly written homework",
-			"synchronicity": 5,
-			"active-learning": 3,
+			"synchronicity": 4.5,
+			"active-learning": 2.5,
 			"teaching-effort": 5
 		},
 		{
 			"text": "5-6 short projects without graded homework",
-			"synchronicity": 5,
+			"synchronicity": 4.75,
 			"active-learning": 5,
 			"teaching-effort": 4
 		},
 		{
 			"text": "1 major, semester-long project divided into parts, plus regular homework",
-			"synchronicity": 3,
-			"active-learning": 4,
+			"synchronicity": 4,
+			"active-learning": 4.5,
 			"teaching-effort": 3
 		},
 		{
 			"text": "Weekly response/reading journals leading up to individually tailored projects",
 			"synchronicity": 3,
 			"active-learning": 4,
-			"teaching-effort": 4
+			"teaching-effort": 3.5
 		},
 		{
 			"text": "1 midterm and 1 end-of-semester research paper, plus regular homework",
 			"synchronicity": 1,
-			"active-learning": 2,
+			"active-learning": 1.5,
 			"teaching-effort": 2
 		}
 	],
@@ -312,19 +312,19 @@
 		},
 		{
 			"text": "One set of small-group DH projects at the end of the semester",
-			"synchronicity": 3,
-			"active-learning": 4,
+			"synchronicity": 3.5,
+			"active-learning": 4.5,
 			"teaching-effort": 3
 		},
 		{
 			"text": "One major DH project, with the rest being traditional ",
 			"synchronicity": 3,
 			"active-learning": 3,
-			"teaching-effort": 1
+			"teaching-effort": 1.5
 		},
 		{
 			"text": "DH work restricted to in-class activities or presented as optional element for traditional assignments intended for extra credit or honors credit",
-			"synchronicity": 2,
+			"synchronicity": 1,
 			"active-learning": 2,
 			"teaching-effort": 1
 		},
@@ -336,8 +336,8 @@
 		},
 		{
 			"text": "All major assignments are related to different modalities of DH, with all of them pitched at a beginner level",
-			"synchronicity": 5,
-			"active-learning": 4,
+			"synchronicity": 4.25,
+			"active-learning": 4.25,
 			"teaching-effort": 4
 		}
 	],
@@ -346,12 +346,12 @@
 			"text": "Mostly in small-group discussions and activities",
 			"synchronicity": 5,
 			"active-learning": 3,
-			"teaching-effort": 2
+			"teaching-effort": 1.5
 		},
 		{
 			"text": "Focused on a particular group project",
-			"synchronicity": 4,
-			"active-learning": 4,
+			"synchronicity": 4.25,
+			"active-learning": 3.5,
 			"teaching-effort": 2
 		},
 		{
@@ -362,20 +362,20 @@
 		},
 		{
 			"text": "Aimed to find collaborators beyond the classroom (e.g., external scholars, librarians, other fields/disciplines)",
-			"synchronicity": 1,
-			"active-learning": 5,
+			"synchronicity": 2,
+			"active-learning": 4.5,
 			"teaching-effort": 5
 		},
 		{
 			"text": "Opportunities for students to contribute to instructor's research (fairly, of course!)",
 			"synchronicity": 1,
 			"active-learning": 5,
-			"teaching-effort": 5
+			"teaching-effort": 4.75
 		},
 		{
 			"text": "Creation of permanent small groups for discussion, feedback, presentations, and office hours attendance",
-			"synchronicity": 4,
-			"active-learning": 3,
+			"synchronicity": 3.75,
+			"active-learning": 4,
 			"teaching-effort": 1
 		}
 	],
@@ -388,13 +388,13 @@
 		},
 		{
 			"text": "Group presentations only",
-			"synchronicity": 3,
+			"synchronicity": 3.5,
 			"active-learning": 3,
-			"teaching-effort": 4
+			"teaching-effort": 2.5
 		},
 		{
 			"text": "Historical, theoretical, or factual context presentation",
-			"synchronicity": 3,
+			"synchronicity": 4.25,
 			"active-learning": 4,
 			"teaching-effort": 3
 		},
@@ -402,17 +402,17 @@
 			"text": "Share in-progress project to solicit feedback",
 			"synchronicity": 5,
 			"active-learning": 5,
-			"teaching-effort": 3
+			"teaching-effort": 3.5
 		},
 		{
 			"text": "Report on completed assignment as a relaxing debriefing session",
-			"synchronicity": 5,
-			"active-learning": 4,
+			"synchronicity": 4.5,
+			"active-learning": 4.5,
 			"teaching-effort": 1
 		},
 		{
 			"text": "As part of an honors contract, undergraduate research opportunity, or graduate school application",
-			"synchronicity": 3,
+			"synchronicity": 3.75,
 			"active-learning": 5,
 			"teaching-effort": 4
 		}
@@ -421,12 +421,12 @@
 		{
 			"text": "Group fieldtrip to museum, gallery, or site beyond campus",
 			"synchronicity": 5,
-			"active-learning": 4,
-			"teaching-effort": 5
+			"active-learning": 4.5,
+			"teaching-effort": 4.5
 		},
 		{
 			"text": "Invited lecturer (virtual or in-person)",
-			"synchronicity": 5,
+			"synchronicity": 3,
 			"active-learning": 3,
 			"teaching-effort": 4
 		},
@@ -438,7 +438,7 @@
 		},
 		{
 			"text": "Research workshop at campus library",
-			"synchronicity": 5,
+			"synchronicity": 4,
 			"active-learning": 3,
 			"teaching-effort": 2
 		},
@@ -446,11 +446,11 @@
 			"text": "Tour of on-campus museum, gallery, library, archives, or landmark",
 			"synchronicity": 5,
 			"active-learning": 4,
-			"teaching-effort": 2
+			"teaching-effort": 2.5
 		},
 		{
 			"text": "Review of an off-campus performance or heritage site individually chosen by each student",
-			"synchronicity": 5,
+			"synchronicity": 1,
 			"active-learning": 5,
 			"teaching-effort": 1
 		}
@@ -458,21 +458,21 @@
 	"First day activity": [
 		{
 			"text": "Ask students to reflect on and share their goals for the class (perhaps for a collaborative Class Constitution or Mission Statement)",
-			"synchronicity": 5,
-			"active-learning": 5,
-			"teaching-effort": 2
+			"synchronicity": 4.5,
+			"active-learning": 4.5,
+			"teaching-effort": 1
 		},
 		{
 			"text": "Survey: gather information from students about their prior experiene in your discipline",
 			"synchronicity": 3,
-			"active-learning": 3,
-			"teaching-effort": 3
+			"active-learning": 3.5,
+			"teaching-effort": 2.5
 		},
 		{
 			"text": "Brief in-class reading or viewing of course text (e.g., poem or video clip) as a preview of course content",
-			"synchronicity": 3,
+			"synchronicity": 2.5,
 			"active-learning": 4,
-			"teaching-effort": 4
+			"teaching-effort": 4.5
 		},
 		{
 			"text": "Collaborative syllabus design: leave some course days blank and ask students to pick 1-2 course texts or a theme",
@@ -484,13 +484,13 @@
 			"text": "Dismantle myths, stereotypes, or misunderstandings of your field/course topic",
 			"synchronicity": 3,
 			"active-learning": 3,
-			"teaching-effort": 5
+			"teaching-effort": 4
 		},
 		{
 			"text": "Project a word cloud generated from course materials or show students an existing DH project in your field",
 			"synchronicity": 1,
 			"active-learning": 1,
-			"teaching-effort": 2
+			"teaching-effort": 1.5
 		}
 	],
 	"Attendance and participation": [
@@ -502,20 +502,20 @@
 		},
 		{
 			"text": "Use sign-up sheets to track attendance",
-			"synchronicity": 4,
+			"synchronicity": 4.5,
 			"active-learning": 2,
 			"teaching-effort": 1
 		},
 		{
 			"text": "Use peer evaluations as supplements for your own attendance/participation recordkeeping",
 			"synchronicity": 1,
-			"active-learning": 4,
-			"teaching-effort": 4
+			"active-learning": 5,
+			"teaching-effort": 3.5
 		},
 		{
 			"text": "Deploy polls or ungraded quizzes at the beginning or end of class to track attendance/participation",
-			"synchronicity": 4,
-			"active-learning": 2,
+			"synchronicity": 3.5,
+			"active-learning": 3,
 			"teaching-effort": 5
 		},
 		{
@@ -525,10 +525,10 @@
 			"teaching-effort": 1
 		},
 		{
-			"text": "Collect exit tickets via a digital tool, such as Flip or GoogleForms",
+			"text": "Collect and review exit tickets via a digital tool, such as Flip or GoogleForms",
 			"synchronicity": 1,
 			"active-learning": 4,
-			"teaching-effort": 4
+			"teaching-effort": 4.25
 		}
 	]
 }

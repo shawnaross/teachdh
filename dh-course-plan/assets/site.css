@@ -91,6 +91,7 @@ h1 {
 
 .scores__list {
 	padding-left: var(--item-font-size);
+	margin-bottom: var(--item-font-size);
 }
 
 .score {
@@ -99,6 +100,15 @@ h1 {
 
 .score__actual-value {
 	font-size: var(--small-font-size);
+}
+
+.score__label {
+	font-weight: 600;
+}
+
+.score__review {
+	margin-top: 0;
+	margin-bottom: var(--item-font-size);
 }
 
 @media only screen and (min-device-width: 480px) {
